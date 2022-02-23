@@ -1,0 +1,16 @@
+image: monachus/hugo
+
+pages:
+  script:
+  - hugo
+  - mv public 334a6f3224c2f188c55a318e1c444e1401bc33fc
+  - mkdir -p public
+  - mv password.html public/index.html
+  - mv 334a6f3224c2f188c55a318e1c444e1401bc33fc public/
+
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+

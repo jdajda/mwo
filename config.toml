@@ -1,0 +1,53 @@
+baseURL = "https://efrei.lab.iisg.agh.edu.pl/web-lab6-db/334a6f3224c2f188c55a318e1c444e1401bc33fc"
+languageCode = "en-us"
+title = "PHP database programming"
+theme = "hugo-theme-learn"
+
+pygmentsCodeFences = true
+pygmentsStyle = "monokai-light"
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir= false
+enableMissingTranslationPlaceholders = false
+canonifyurls = true
+
+[params]
+ # Prefix URL to edit current page. Will display an "Edit this page" button on top right hand corner of every page. 
+  # Useful to give opportunity to people to create merge request for your doc.
+  # See the config.toml file from this documentation site to have an example.
+  editURL = ""
+  # Author of the site, will be used in meta information
+  author = "Jacek Dajda"
+  # Description of the site, will be used in meta information
+  description = ""
+  # Shows a checkmark for visited pages on the menu
+  showVisitedLinks = true
+  # Disable search function. It will hide search bar
+  disableSearch = false
+  # Javascript and CSS cache are automatically busted when new version of site is generated. 
+  # Set this to true to disable this behavior (some proxies don't handle well this optimization)
+  disableAssetsBusting = false
+  # Set this to true to disable copy-to-clipboard button for inline code.
+  disableInlineCopyToClipBoard = false
+  # A title for shortcuts in menu is set by default. Set this to true to disable it. 
+  disableShortcutsTitle = false
+  # When using mulitlingual website, disable the switch language button.
+  disableLanguageSwitchingButton = true
+  # Order sections in menu by "weight" or "title". Default to "weight"
+  ordersectionsby = "weight"
+  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  themeVariant = "blue" # choose theme variant "green", "gold" , "gray", "blue" (default)
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='far fa-file-pdf'></i> Lecture: introduction to PHP"
+url = "web-lecture03-php.pdf"
+weight = 11
+
+[[menu.shortcuts]]
+name = "<i class='far fa-file-pdf'></i> Lecture: PHP web apps"
+url = "web-lecture04-php.pdf"
+weight = 12
+
