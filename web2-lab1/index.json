@@ -1,57 +1,58 @@
 [
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/",
-	"title": "Wprowadzenie",
-	"tags": [],
-	"description": "",
-	"content": "Wprowadzenie Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST).\nJaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy. W tym celu będziemy potrzebowali dwóch głównych endpointów do obsługi samych uczestników oraz spotkań.\n Pierwsze kroki Obsługa endpointa dla uczestników Wdrożenie Realizacja pozostałych endpointów Testy endpointów  Powodzenia!\nTable of contents  Connecting to DB Getting all data Data filtering using SQL Adding new data to database Playing with ActiveRecord  "
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/connecting/",
-	"title": "Connecting to DB",
-	"tags": [],
-	"description": "",
-	"content": "We have the following SQLite database:\nWe want to display names of the friends in a list. Look at the example:\nclass MyDB extends SQLite3 { function __construct() { $this-\u0026gt;open(\u0026#39;friends.db\u0026#39;); } } $db = new MyDB(); if(!$db) { echo $db-\u0026gt;lastErrorMsg(); exit(); } echo \u0026#34;\u0026lt;h2\u0026gt;My friends\u0026lt;/h2\u0026gt;\u0026#34;; $sql = \u0026#34;select * from friend\u0026#34;; $ret = $db-\u0026gt;query($sql); while($row = $ret-\u0026gt;fetchArray(SQLITE3_ASSOC) ) { echo $row[\u0026#39;name\u0026#39;] . \u0026#34; \u0026lt;br\u0026gt;\u0026#34;; } $db-\u0026gt;close(); You will need the database file. Download the file friends.db. To see the database you can use an online tool called https://sqliteonline.com. You need to load the database file there to see such result:\nIn case of problems If you are working on laboratory computers you don\u0026rsquo;t need to configure anything here :-)\nIt is possible that you will encounter errors during executing the above code. In this case you need to enable your sqlite extension in php.ini config.\nFollow the steps:\n Find your php.ini file.  On Windows machines you can find it in C:\\xampp\\php\\php.ini or C:\\Windows paths On MacOS or Linux systems find it using the following command php -i | grep php.ini   Edit the file. Find line ;extension=php_sqlite3.dll and remove the first character (semicolon) Restart the server. It should work Sometimes when you install your PHP to a custom folder (for example in Program Files on Windows) PHP cannot find the extension directory. In this case you need to provide the correct extension directory in php.ini file. To this purpose edit parameter extension_dir to point to proper folder. For example extension_dir=\u0026quot;C:\\xampp\\php\\ext\u0026quot;\r  "
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/connecting2/",
-	"title": "Getting all data",
-	"tags": [],
-	"description": "",
-	"content": "Extend your code so that you display name, surname and email as shown below:\n"
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/filtering/",
-	"title": "Data filtering using SQL",
-	"tags": [],
-	"description": "",
-	"content": "Extend your code so that you can filter the list using name, surname and email. The filter should check for any occurances of the given keyword in given field. Check the example below:\nHints  For filtering you can use LIKE SQL operator. Don\u0026rsquo;t forget to set previous values for the form fields, like this: value=\u0026quot;\u0026lt;?=$name?\u0026gt;\u0026quot;  "
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/adding/",
-	"title": "Adding data to database",
-	"tags": [],
-	"description": "",
-	"content": "Finally, we want to extend our example by allowing user to add new friend. For this purpose we just need to add additional action to the form and handle this new action. Check the example below:\nHints  Add new button to the form. Use same name properties for both buttons: to filtering and adding. Based on its value you will know what action should be executed. Whe you are adding new friends, you must reset form fields to be empty. You can achieve this by changing the value to something like this: value=\u0026quot;\u0026lt;?php if ($action==\u0026quot;Filter friends\u0026quot;) echo $name?\u0026gt;\u0026quot; To add new record to the database use INSERT SQL command, like in this example: $sql = \u0026quot;insert into 'friend' (name, surname, email) values ('$name', '$surname', '$email')\u0026quot;;  "
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/activerecord/",
-	"title": "Playing with ActiveRecord",
-	"tags": [],
-	"description": "",
-	"content": "We want to improve our code by introducing active record concept. For this we will need a library available at https://github.com/bephp/activerecord. We want to replace the SQL queries with a use of the library.\nHints To use it you need to execute the following steps:\n Import it using composer composer require bephp/activerecord Load it into the project using require __DIR__ . '/vendor/autoload.php'; Define a model  class Friend extends ActiveRecord{ public $table = \u0026#39;friend\u0026#39;; public $primaryKey = \u0026#39;id\u0026#39;; }  Connect to the database  ActiveRecord::setDb(new PDO(\u0026#39;sqlite:friends.db\u0026#39;));  Afterwards use documentation from the github to learn how to list all friends as well as add, update and delete them. You should be able to obtain the following working functionality:  "
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/categories/",
-	"title": "Categories",
-	"tags": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://jdajda.github.io/mwo/web2-lab1/tags/",
-	"title": "Tags",
-	"tags": [],
-	"description": "",
-	"content": ""
-}]
+  {
+    "content": "Wprowadzenie Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST).\nJaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy. W tym celu będziemy potrzebowali dwóch głównych endpointów do obsługi samych uczestników oraz spotkań.\nPowodzenia!\nPlan zajęć  Pierwsze kroki Obsługa endpointa dla uczestników Wdrożenie Realizacja pozostałych endpointów Testy endpointów  ",
+    "description": "",
+    "tags": null,
+    "title": "Wprowadzenie",
+    "uri": "/"
+  },
+  {
+    "content": " Sklonuj projekt: https://github.com/jdajda/agh-mwo-enroller-rest Zaimportuj do Eclipse Uruchom projekt (główna klasa: com.company.enroller.App). Powinieneś zobaczyć w ostatnich linijkach konsoli mniej więcej taką linijkę: INFO 11920 --- [ main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''  Zobacz czy serwis działa: http://localhost:8080/participants. Powinieneś zobaczyć: [{\"login\":\"user2\",\"password\":\"password\"},{\"login\":\"user3\",\"password\":\"password\"},{\"login\":\"user4\",\"password\":\"password\"},{\"login\":\"user5\",\"password\":\"password\"}]  Zobaczmy to samo z poziomu konsoli. Uruchom terminal (Git Bash) i wpisz curl -s http://localhost:8080/participants Sprawdź jaki kod odpowiedzi serwer zwraca adresu dla http://localhost:8080 Pobierz i zainstaluj aplikację Postman https://www.getpostman.com Zapoznaj się z aplikacją wywołując powyższe zapytania  ",
+    "description": "",
+    "tags": null,
+    "title": "Pierwsze kroki",
+    "uri": "/01_firststeps/"
+  },
+  {
+    "content": " Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę ParticipantService.findByLogin(String login) oraz odpowiedniego endpointa w klasie ParticipantRestController. Poniżej kod takiego endpointa: @RequestMapping(value = \"/{id}\", method = RequestMethod.GET) public ResponseEntity\u003c?\u003e getMeeting(@PathVariable(\"id\") String login) { Participant participant = participantService.findByLogin(login); if (participant == null) { return new ResponseEntity(HttpStatus.NOT_FOUND); } return new ResponseEntity\u003cParticipant\u003e(participant, HttpStatus.OK); }  Zaimplementuj dodawanie uczestników. Metoda powinna zostać zadeklarowana w sposób następujący: @RequestMapping(value = \"\", method = RequestMethod.POST) public ResponseEntity\u003c?\u003e registerParticipant(@RequestBody Participant participant)  Obsłuż sytuację kiedy dany uczestnik już istnieje. W tym celu należy wykorzystać funkcję findByLogin. W przypadku istnienia danego użytkownika należy wyjść z funkcji w następujący sposób: return new ResponseEntity(\"Unable to create. A participant with login \" + participant.getLogin() + \" already exist.\", HttpStatus.CONFLICT);  Żeby sprawdzić działanie wykorzystaj Postmana albo następującą komendę: curl -H \"Content-Type: application/json\" -d '{\"login\":\"somelogin\", \"password\": \"some password\"}' localhost:8080/participants  Analogicznie zaimplementuj samodzielnie usuwanie uczestników oraz ich aktualizację.  ",
+    "description": "",
+    "tags": null,
+    "title": "Obsługa endpointa dla uczestników",
+    "uri": "/02_participant/"
+  },
+  {
+    "content": "We want to improve our code by introducing active record concept. For this we will need a library available at https://github.com/bephp/activerecord. We want to replace the SQL queries with a use of the library.\nHints To use it you need to execute the following steps:\n Import it using composer composer require bephp/activerecord Load it into the project using require __DIR__ . '/vendor/autoload.php'; Define a model  class Friend extends ActiveRecord{ public $table = 'friend'; public $primaryKey = 'id'; }  Connect to the database  ActiveRecord::setDb(new PDO('sqlite:friends.db'));  Afterwards use documentation from the github to learn how to list all friends as well as add, update and delete them. You should be able to obtain the following working functionality:  ",
+    "description": "",
+    "tags": null,
+    "title": "Wdrożenie",
+    "uri": "/03_deployment/"
+  },
+  {
+    "content": "Zrealizuj endpoint dla spotkań. Ma umożliwiać:\n Wersja BASIC  Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Dodawanie spotkań Dodawanie uczestnika do spotkania Pobieranie uczestników spotkania   Wersja GOLD (dodatkowo do BASIC)  Usuwanie spotkań Aktualizację spotkań Usuwanie uczestnika ze spotkania   Wersja PREMIUM (dodatkowo do GOLD)  Sortowanie listy spotkań po tytule spotkania Przeszukiwanie listy spotkań po tytule i opisie (na zasadzie substring) Przeszukiwanie listy spotkań po zapisanym uczestniku spotkania    ",
+    "description": "",
+    "tags": null,
+    "title": "Realizacja pozostałych endpointów",
+    "uri": "/04_other_endpoints/"
+  },
+  {
+    "content": " Przeanalizuj kod testów w klasie ParticipantRestControllerTest Uzupełnij testy korzystając z poniższej podpowiedzi: @Test public void addParticipant() throws Exception { Participant participant = new Participant(); participant.setLogin(\"testlogin\"); participant.setPassword(\"testpassword\"); String inputJSON = \"{\\\"login\\\":\\\"testlogin\\\", \\\"password\\\":\\\"somepassword\\\"}\"; given(participantService.findByLogin(\"testlogin\")).willReturn((Participant)null); given(participantService.create(participant)).willReturn(participant); mvc.perform(post(\"/participants\").content(inputJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()); given(participantService.findByLogin(\"testlogin\")).willReturn(participant); mvc.perform(post(\"/participants\").content(inputJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isConflict()); verify(participantService, times(2)).findByLogin(\"testlogin\"); }  Posługując się analogią, napisz testy dla aktualizacji i usuwania użytkowników.  ",
+    "description": "",
+    "tags": null,
+    "title": "Testy endpointów",
+    "uri": "/05_testing/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Categories",
+    "uri": "/categories/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tags",
+    "uri": "/tags/"
+  }
+]

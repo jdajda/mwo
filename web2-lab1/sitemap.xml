@@ -1,21 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jdajda.github.io/mwo/web2-lab1/</loc>
-  </url><url>
-    <loc>https://jdajda.github.io/mwo/web2-lab1/connecting/</loc>
-  </url><url>
-    <loc>https://jdajda.github.io/mwo/web2-lab1/connecting2/</loc>
-  </url><url>
-    <loc>https://jdajda.github.io/mwo/web2-lab1/filtering/</loc>
-  </url><url>
-    <loc>https://jdajda.github.io/mwo/web2-lab1/adding/</loc>
-  </url><url>
-    <loc>https://jdajda.github.io/mwo/web2-lab1/activerecord/</loc>
-  </url><url>
+  </url>
+  <url>
+    <loc>https://jdajda.github.io/mwo/web2-lab1/01_firststeps/</loc>
+  </url>
+  <url>
+    <loc>https://jdajda.github.io/mwo/web2-lab1/02_participant/</loc>
+  </url>
+  <url>
+    <loc>https://jdajda.github.io/mwo/web2-lab1/03_deployment/</loc>
+  </url>
+  <url>
+    <loc>https://jdajda.github.io/mwo/web2-lab1/04_other_endpoints/</loc>
+  </url>
+  <url>
+    <loc>https://jdajda.github.io/mwo/web2-lab1/05_testing/</loc>
+  </url>
+  <url>
     <loc>https://jdajda.github.io/mwo/web2-lab1/categories/</loc>
-  </url><url>
+  </url>
+  <url>
     <loc>https://jdajda.github.io/mwo/web2-lab1/tags/</loc>
   </url>
 </urlset>
