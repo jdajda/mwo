@@ -1,20 +1,22 @@
 +++
-title = "Introduction"
+title = "Wprowadzenie"
 description = ""
 weight = 10
 +++
 
-# Introduction
+# Wprowadzenie
 
-Today we will learn how to handle database connections from the PHP applications. We will use lightweight file-based SQL database called [SQLite](https://www.sqlite.org). We will learn how to:
+Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST). 
 
-1. Connect to the database
-2. Get data
-3. Get filtered data
-4. Insert data
-5. Active record
+Jaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy. W tym celu będziemy potrzebowali dwóch głównych endpointów do obsługi samych uczestników oraz spotkań.
 
-Good luck!
+1. Pierwsze kroki
+2. Obsługa endpointa dla uczestników
+3. Wdrożenie
+4. Realizacja pozostałych endpointów
+5. Testy endpointów
+
+Powodzenia!
 
 ## Table of contents
 * [Connecting to DB]({{%relref "connecting/_index.md"%}})
