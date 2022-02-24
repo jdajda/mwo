@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pl" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.92.2" />
+    <meta name="description" content="">
+<meta name="author" content="Jacek Dajda">
+
+    <link rel="icon" href="https://jdajda.github.io/mwo/web2-lab1/images/favicon.png" type="image/png">
+
+    <title>Connecting to DB :: Metody Wytwarzania Oprogramowania - wprowadzenie do REST</title>
+
+    
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/hybrid.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/atom-one-dark-reasonable.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/tabs.css?1645662129" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/hugo-theme.css?1645662129" rel="stylesheet">
+    
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1645662129" rel="stylesheet">
+    
+    
+
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery-3.3.1.min.js?1645662129"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="https://jdajda.github.io/mwo/web2-lab1/connecting/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="https://moodle.lab.ii.agh.edu.pl"><img src="https://jdajda.github.io/mwo/web2-lab1/banner.png"></a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1645662129"></script>
+<script type="text/javascript" src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1645662129"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/jdajda.github.io\/mwo\/web2-lab1";
+    
+</script>
+<script type="text/javascript" src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1645662129"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='https://jdajda.github.io/mwo/web2-lab1/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/connecting/" title="Connecting to DB" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="https://jdajda.github.io/mwo/web2-lab1/connecting/">
+          Connecting to DB
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/connecting2/" title="Getting all data" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://jdajda.github.io/mwo/web2-lab1/connecting2/">
+          Getting all data
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/filtering/" title="Data filtering using SQL" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://jdajda.github.io/mwo/web2-lab1/filtering/">
+          Data filtering using SQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/adding/" title="Adding data to database" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://jdajda.github.io/mwo/web2-lab1/adding/">
+          Adding data to database
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/activerecord/" title="Playing with ActiveRecord" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://jdajda.github.io/mwo/web2-lab1/activerecord/">
+          Playing with ActiveRecord
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Wyczyść historię</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='https://jdajda.github.io/mwo/web2-lab1/'>Wprowadzenie</a> > Connecting to DB
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Connecting to DB
+            </h1>
+          
+
+        
+
+
+
+	<p>We have the following SQLite database:</p>
+<p><img src="https://jdajda.github.io/mwo/web2-lab1/db1.png" alt=""></p>
+<p>We want to display names of the friends in a list. Look at the example:</p>
+<p><img src="https://jdajda.github.io/mwo/web2-lab1/db2.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#fff;font-weight:bold">class</span> MyDB <span style="color:#fff;font-weight:bold">extends</span> SQLite3 {
+    <span style="color:#fff;font-weight:bold">function</span> __construct() {
+       $this-&gt;<span style="color:#007f7f">open</span>(<span style="color:#0ff;font-weight:bold">&#39;friends.db&#39;</span>);
+    }
+ }
+
+ $db = <span style="color:#fff;font-weight:bold">new</span> MyDB();
+ <span style="color:#fff;font-weight:bold">if</span>(!$db) {
+    <span style="color:#fff;font-weight:bold">echo</span> $db-&gt;<span style="color:#007f7f">lastErrorMsg</span>();
+    <span style="color:#fff;font-weight:bold">exit</span>();
+ } 
+
+ <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;&lt;h2&gt;My friends&lt;/h2&gt;&#34;</span>;
+ $sql = <span style="color:#0ff;font-weight:bold">&#34;select * from friend&#34;</span>;
+ $ret = $db-&gt;<span style="color:#007f7f">query</span>($sql);
+ <span style="color:#fff;font-weight:bold">while</span>($row = $ret-&gt;<span style="color:#007f7f">fetchArray</span>(SQLITE3_ASSOC) ) {
+     <span style="color:#fff;font-weight:bold">echo</span> $row[<span style="color:#0ff;font-weight:bold">&#39;name&#39;</span>] . <span style="color:#0ff;font-weight:bold">&#34; &lt;br&gt;&#34;</span>;
+ }
+
+ $db-&gt;<span style="color:#007f7f">close</span>();
+</code></pre></div><p>You will need the database file. Download the file <a href="https://jdajda.github.io/mwo/web2-lab1/friends.db">friends.db</a>. To see the database you can use an online tool called <a href="https://sqliteonline.com">https://sqliteonline.com</a>. You need to load the database file there to see such result:</p>
+<p><img src="https://jdajda.github.io/mwo/web2-lab1/sqliteonline.png" alt=""></p>
+<h1 id="in-case-of-problems">In case of problems</h1>
+<p><em><strong>If you are working on laboratory computers you don&rsquo;t need to configure anything here :-)</strong></em></p>
+<p>It is possible that you will encounter errors during executing the above code. In this case you need to enable your sqlite extension in php.ini config.</p>
+<p>Follow the steps:</p>
+<ol>
+<li>Find your <code>php.ini</code> file.
+<ol>
+<li>On Windows machines you can find it in <code>C:\xampp\php\php.ini</code> or  <code>C:\Windows</code> paths</li>
+<li>On MacOS or Linux systems find it using the following command <code>php -i | grep php.ini</code></li>
+</ol>
+</li>
+<li>Edit the file. Find line <code>;extension=php_sqlite3.dll</code> and remove the first character (semicolon)</li>
+<li>Restart the server. It should work</li>
+<li>Sometimes when you install your PHP to a custom folder (for example in <code>Program Files</code> on Windows) PHP cannot find the extension directory. In this case you need to provide the correct extension directory in <code>php.ini</code> file. To this purpose edit parameter <code>extension_dir</code> to point to proper folder. For example
+<pre tabindex="0"><code>extension_dir=&quot;C:\xampp\php\ext&quot;
+</code></pre></li>
+</ol>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab1/" title="Wprowadzenie"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab1/connecting2/" title="Getting all data" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.jquery.min.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.sticky.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/highlight.pack.js?1645662129"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/modernizr.custom-3.6.0.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/learn.js?1645662129"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/hugo-learn.js?1645662129"></script>
+    
+        
+            <script src="https://jdajda.github.io/mwo/web2-lab1/mermaid/mermaid.js?1645662129"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
