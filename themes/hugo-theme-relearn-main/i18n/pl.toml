@@ -1,0 +1,68 @@
+[Search-placeholder]
+other = "Szukaj..."
+
+[Clear-History]
+other = "Wyczyść historię"
+
+[Attachments-label]
+other = "Załączniki"
+
+[title-404]
+other = "Błąd"
+
+[message-404]
+other = "Ooops. Wygląda na to, że strona nie istnieje ¯\\_(ツ)_/¯."
+
+[Go-to-homepage]
+other = "Strona główna"
+
+[Edit-this-page]
+other = "Edytuj"
+
+[Print-this-chapter]
+other = "Wydrukuj cały rozdział"
+
+[Shortcuts-Title]
+other = "Więcej"
+
+[Expand-title]
+other = "Rozszerz..."
+
+[Navigation-toggle]
+other = "Menu"
+
+[Toc-toggle]
+other = "Spis treści"
+
+[Byte-symbol]
+other = "B"
+
+[Kilobyte-symbol]
+other = "KB"
+
+[Megabyte-symbol]
+other = "MB"
+
+[note]
+other = "Uwaga"
+
+[info]
+other = "Info"
+
+[tip]
+other = "Podpowiedź"
+
+[warning]
+other = "Ostrzeżenie"
+
+[Copy-to-clipboard]
+other = "Kopiuj do schowka"
+
+[Copied-to-clipboard]
+other = "Skopiowano do schowka!"
+
+[Copy-link-to-clipboard]
+other = "Skopiuj link do schowka"
+
+[Link-copied-to-clipboard]
+other = "Skopiowano link do schowka!"
