@@ -4,8 +4,8 @@ description = ""
 weight = 11
 +++
 
-1. Sklonuj projekt: https://github.com/jdajda/agh-mwo-enroller-rest
-1. Zaimportuj do Eclipse
+1. Sforkuj projekt: https://github.com/jdajda/agh-mwo-enroller
+1. Następnie sklonuj swoje repozytorium i zaimportuj do IntelliJ IDEA
 1. Uruchom projekt (główna klasa: ```com.company.enroller.App```). Powinieneś zobaczyć w ostatnich linijkach konsoli mniej więcej taką linijkę: 
    ```java
    INFO 11920 --- [    main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''

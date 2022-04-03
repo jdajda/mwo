@@ -1,7 +1,7 @@
 baseURL = "https://jdajda.github.io/mwo/web2-lab1"
 languageCode = "pl-PL"
 title = "Metody Wytwarzania Oprogramowania - wprowadzenie do REST"
-theme = "hugo-theme-relearn"
+theme = "hugo-theme-relearn-main"
 
 pygmentsCodeFences = true
 pygmentsStyle = "monokai-light"
@@ -40,14 +40,3 @@ canonifyurls = true
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
-
-#[[menu.shortcuts]]
-#name = "<i class='far fa-file-pdf'></i> Lecture: introduction to PHP"
-#url = "web-lecture03-php.pdf"
-#weight = 11
-
-#[[menu.shortcuts]]
-#name = "<i class='far fa-file-pdf'></i> Lecture: PHP web apps"
-#url = "web-lecture04-php.pdf"
-#weight = 12
-

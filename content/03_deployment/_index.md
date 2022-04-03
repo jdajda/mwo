@@ -4,27 +4,18 @@ description = ""
 weight = 13
 +++
 
-We want to improve our code by introducing active record concept. For this we will need a library available at https://github.com/bephp/activerecord. We want to replace the SQL queries with a use of the library.
+By wdrożyć nasze rozwiązanie wykorzystamy serwis ***Heroku*** w ramach jego darmowego planu. W tym celu będziemy musieli utworzyć konto w serwisie i następnie zintegrować je ze swoim repozytorium.
 
-# Hints
-
-To use it you need to execute the following steps:
-
-1. Import it using composer ```composer require bephp/activerecord```
-1. Load it into the project using `require __DIR__ . '/vendor/autoload.php';`
-1. Define a model
-```php
-class Friend extends ActiveRecord{
-	public $table = 'friend';
-    public $primaryKey = 'id';
-}
-```
-1. Connect to the database 
-```php
-ActiveRecord::setDb(new PDO('sqlite:friends.db'));
-```
-1. Afterwards use documentation from the [github](https://github.com/bephp/activerecord) to learn how to list all friends as well as add, update and delete them.
-1. You should be able to obtain the following working functionality:
-
-
-
+1. Stwórz konto na Heroku www.heroku.com 
+1. Stwórz nową aplikację. 
+    ![](/heroku1.png)
+1. Podczas konfiguracji podaj nazwę oraz lokalizację swojej maszyny
+    ![](/heroku2.png)
+1. Podłącz Heroku do swojego Githuba i odszukaj odpowiednie repozytorium
+    ![](/heroku3.png)
+1. Po podpięciu repozytorium będzie ono widoczne w Twojej konfiguracji.
+    ![](/heroku4.png)
+1. Następnie aktywuj automatyczną aktualizację aplikacji i zdeploy'uj swoją aplikację. 
+    ![](/heroku5.png)
+1. Sprawdź czy aplikacja działa np. poprzez pobranie listy użytkowników. Aplikacja znajduje się pod adresem: https://NAZWA_TWOJEJ_APLIKACJI.herokuapp.com
+1. Wykonaj jakąś drobną zmianę i sprawdź czy Heroku ją wykryło.
