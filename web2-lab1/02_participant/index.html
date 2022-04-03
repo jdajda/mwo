@@ -9,16 +9,16 @@
     <meta name="author" content="Jacek Dajda">
     <title>Obsługa endpointa dla uczestników :: Metody Wytwarzania Oprogramowania - wprowadzenie do REST</title>
     <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab1/02_participant/index.xml" title="Metody Wytwarzania Oprogramowania - wprowadzenie do REST" />
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1648944371" rel="stylesheet" id="variant-style">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1648944371" rel="stylesheet" media="print">
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1648944371"></script>
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1648945295" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1648945295" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1648945295" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1648945295"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -34,7 +34,7 @@
       var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab1/';
       variants.init( [ 'green' ] );
     </script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1648944371"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1648945295"></script>
   </head>
   <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab1/02_participant/">
     <div id="body" class="default-animation">
@@ -70,7 +70,7 @@
 <ol>
 <li>Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę <code>ParticipantService.findByLogin(String login)</code> oraz odpowiedniego endpointa w klasie <code>ParticipantRestController</code>. Poniżej kod takiego endpointa:
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@RequestMapping(value = <span style="color:#0ff;font-weight:bold">&#34;/{id}&#34;</span>, method = RequestMethod.<span style="color:#007f7f">GET</span>)
-</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> ResponseEntity&lt;?&gt; getMeeting(@PathVariable(<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>) String login) {
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> ResponseEntity&lt;?&gt; getParticipant(@PathVariable(<span style="color:#0ff;font-weight:bold">&#34;id&#34;</span>) String login) {
 </span></span><span style="display:flex;"><span> Participant participant = participantService.<span style="color:#007f7f">findByLogin</span>(login);
 </span></span><span style="display:flex;"><span> <span style="color:#fff;font-weight:bold">if</span> (participant == <span style="color:#fff;font-weight:bold">null</span>) {
 </span></span><span style="display:flex;"><span>     <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> ResponseEntity(HttpStatus.<span style="color:#007f7f">NOT_FOUND</span>);
@@ -107,9 +107,9 @@
           <input data-search-input id="search-by" type="search" placeholder="">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1648944371"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1648944371"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1648944371"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1648945295"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1648945295"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1648945295"></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -161,9 +161,9 @@
         </div>
       </div>
     </aside>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1648944371"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1648945295"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1648945295"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1648945295"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1648945295"></script>
   </body>
 </html>
