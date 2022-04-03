@@ -15,16 +15,6 @@ weight = 12
      return new ResponseEntity<Participant>(participant, HttpStatus.OK);
     }
     ```
-1. Jeśli chcesz żeby za każdym razem nie trzeba było restartować serwera, dodaj nową zależność do swojego ```pom.xml```:
-    ```xml
-    <dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-devtools</artifactId>
-	</dependency>
-    ```
-    {{% notice tip %}}
-    Nie zapomnij przeładować całego projektu w IDE, tak aby wprowadzone zmiany zostały zastosowane.
-    {{% /notice %}}
     
 1. Zaimplementuj dodawanie uczestników. Metoda powinna zostać zadeklarowana w sposób następujący:
     ```java
