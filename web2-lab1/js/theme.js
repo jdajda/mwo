@@ -1,51 +1,17 @@
-// Scrollbar Width function
-function getScrollBarWidth() {
-    var inner = document.createElement('p');
-    inner.style.width = "100%";
-    inner.style.height = "200px";
-
-    var outer = document.createElement('div');
-    outer.style.position = "absolute";
-    outer.style.top = "0px";
-    outer.style.left = "0px";
-    outer.style.visibility = "hidden";
-    outer.style.width = "200px";
-    outer.style.height = "150px";
-    outer.style.overflow = "hidden";
-    outer.appendChild(inner);
-
-    document.body.appendChild(outer);
-    var w1 = inner.offsetWidth;
-    outer.style.overflow = 'scroll';
-    var w2 = inner.offsetWidth;
-    if (w1 == w2) w2 = outer.clientWidth;
-
-    document.body.removeChild(outer);
-
-    return (w1 - w2);
-};
-
-function setMenuHeight() {
-    $('#sidebar .highlightable').height($('#sidebar').innerHeight() - $('#header-wrapper').height() - 40);
-    $('#sidebar .highlightable').perfectScrollbar('update');
+var theme = true;
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+if( isIE ){
+    // we don't support sidebar flyout in IE
+    document.querySelector( 'body' ).classList.remove( 'mobile-support' );
 }
-
-function fallbackMessage(action) {
-    var actionMsg = '';
-    var actionKey = (action === 'cut' ? 'X' : 'C');
-
-    if (/iPhone|iPad/i.test(navigator.userAgent)) {
-        actionMsg = 'No support :(';
-    }
-    else if (/Mac/i.test(navigator.userAgent)) {
-        actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
-    }
-    else {
-        actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
-    }
-
-    return actionMsg;
+else{
+    document.querySelector( 'body' ).classList.add( 'mobile-support' );
 }
+var isPrint = document.querySelector( 'body' ).classList.contains( 'print' );
+
+var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+
+var formelements = 'button, datalist, fieldset, input, label, legend, meter, optgroup, option, output, progress, select, textarea';
 
 function switchTab(tabGroup, tabId) {
     allTabItems = jQuery("[data-tab-group='"+tabGroup+"']");
@@ -71,21 +37,21 @@ function switchTab(tabGroup, tabId) {
 
       // Store the selection to make it persistent
       if(window.localStorage){
-          var selectionsJSON = window.localStorage.getItem("tabSelections");
+          var selectionsJSON = window.localStorage.getItem(baseUriFull+"tab-selections");
           if(selectionsJSON){
             var tabSelections = JSON.parse(selectionsJSON);
           }else{
             var tabSelections = {};
           }
           tabSelections[tabGroup] = tabId;
-          window.localStorage.setItem("tabSelections", JSON.stringify(tabSelections));
+          window.localStorage.setItem(baseUriFull+"tab-selections", JSON.stringify(tabSelections));
       }
     }
 }
 
 function restoreTabSelections() {
     if(window.localStorage){
-        var selectionsJSON = window.localStorage.getItem("tabSelections");
+        var selectionsJSON = window.localStorage.getItem(baseUriFull+"tab-selections");
         if(selectionsJSON){
           var tabSelections = JSON.parse(selectionsJSON);
         }else{
@@ -98,28 +64,447 @@ function restoreTabSelections() {
     }
 }
 
-function initMermaid() {
-    $('code.language-mermaid').each(function(index, element) {
-        var content = $(element).html().replace(/&amp;/g, '&');
-        $(element).parent().replaceWith('<div class="mermaid" align="center">' + content + '</div>');
-    });
+function initMermaid( update ) {
+    // we are either in update or initialization mode;
+    // during initialization, we want to edit the DOM;
+    // during update we only want to execute if something chanegd
+    var decodeHTML = function( html ){
+        var txt = document.createElement( 'textarea' );
+        txt.innerHTML = html;
+        return txt.value;
+    };
 
-    if (typeof mermaid != 'undefined' && typeof mermaid.mermaidAPI != 'undefined') {
-        mermaid.mermaidAPI.initialize( Object.assign( {}, mermaid.mermaidAPI.getSiteConfig(), { startOnLoad: true } ) );
-        mermaid.contentLoaded();
+    var parseGraph = function( graph ){
+        var d = /^\s*(%%\s*\{\s*\w+\s*:([^%]*?)%%\s*\n?)/g;
+        var m = d.exec( graph );
+        var dir = {};
+        var content = graph;
+        if( m && m.length == 3 ){
+            dir = JSON.parse( '{ "dummy": ' + m[2] ).dummy;
+            content = graph.substring( d.lastIndex );
+        }
+        return { dir: dir, content: content };
+    };
+
+    var serializeGraph = function( graph ){
+        return '%%{init: ' + JSON.stringify( graph.dir ) + '}%%\n' + graph.content;
+    };
+
+    var init_func = function(){
+        state.is_initialized = true;
+        var is_initialized = false;
+        var theme = variants.getColorValue( 'MERMAID-theme' );
+        document.querySelectorAll('.mermaid').forEach( function( element ){
+            var parse = parseGraph( decodeHTML( element.innerHTML ) );
+
+            if( parse.dir.theme ){
+                parse.dir.relearn_user_theme = true;
+            }
+            if( !parse.dir.relearn_user_theme ){
+                parse.dir.theme = theme;
+            }
+            is_initialized = true;
+
+            var graph = serializeGraph( parse );
+            element.innerHTML = graph;
+            var new_element = document.createElement( 'div' );
+            new_element.classList.add( 'mermaid-container' );
+            new_element.innerHTML = '<div class="mermaid-code">' + graph + '</div>' + element.outerHTML;
+            element.parentNode.replaceChild( new_element, element );
+        });
+        return is_initialized;
+    }
+
+    var update_func = function(){
+        var is_initialized = false;
+        var theme = variants.getColorValue( 'MERMAID-theme' );
+        document.querySelectorAll( '.mermaid-container' ).forEach( function( e ){
+            var element = e.querySelector( '.mermaid' );
+            var code = e.querySelector( '.mermaid-code' );
+            var parse = parseGraph( decodeHTML( code.innerHTML ) );
+
+            if( parse.dir.relearn_user_theme ){
+                return;
+            }
+            if( parse.dir.theme == theme ){
+                return;
+            }
+            is_initialized = true;
+
+            parse.dir.theme = theme;
+            var graph = serializeGraph( parse );
+            element.removeAttribute('data-processed');
+            element.innerHTML = graph;
+            code.innerHTML = graph;
+        });
+        return is_initialized;
+    };
+
+    var state = this;
+    if( update && !state.is_initialized ){
+        return;
+    }
+    if( typeof variants == 'undefined' ){
+        return;
+    }
+    if( typeof mermaid == 'undefined' || typeof mermaid.mermaidAPI == 'undefined' ){
+        return;
+    }
+
+    var is_initialized = ( update ? update_func() : init_func() );
+    if( is_initialized ){
+        mermaid.init();
         $(".mermaid svg").svgPanZoom({});
     }
 }
 
+function initSwagger( update ){
+    if( typeof variants == 'undefined' ){
+        return;
+    }
+    var attrs = [
+        [ 'bg-color', variants.getColorValue( 'MAIN-BG-color' ) ],
+        [ 'mono-font', variants.getColorValue( 'CODE-font' ) ],
+        [ 'primary-color', variants.getColorValue( 'TAG-BG-color' ) ],
+        [ 'regular-font', variants.getColorValue( 'MAIN-font' ) ],
+        [ 'text-color', variants.getColorValue( 'MAIN-TEXT-color' ) ],
+        [ 'theme', variants.getColorValue( 'SWAGGER-theme' ) ],
+    ];
+    document.querySelectorAll( 'rapi-doc' ).forEach( function( e ){
+        attrs.forEach( function( attr ){
+            e.setAttribute( attr[0], attr[1] );
+        });
+    });
+}
+
+function initAnchorClipboard(){
+    document.querySelectorAll( 'h1~h2,h1~h3,h1~h4,h1~h5,h1~h6').forEach( function( element ){
+        var url = encodeURI(document.location.origin + document.location.pathname);
+        var link = url + "#"+element.id;
+        var new_element = document.createElement( 'span' );
+        new_element.classList.add( 'anchor' );
+        new_element.setAttribute( 'title', window.T_Copy_link_to_clipboard );
+        new_element.setAttribute( 'data-clipboard-text', link );
+        new_element.innerHTML = '<i class="fas fa-link fa-lg"></i>';
+        element.append( new_element );
+    });
+
+    $(".anchor").on('mouseleave', function(e) {
+        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+    });
+
+    var clip = new ClipboardJS('.anchor');
+    clip.on('success', function(e) {
+        e.clearSelection();
+        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
+    });
+}
+
+function initCodeClipboard(){
+    function fallbackMessage(action) {
+        var actionMsg = '';
+        var actionKey = (action === 'cut' ? 'X' : 'C');
+
+        if (/iPhone|iPad/i.test(navigator.userAgent)) {
+            actionMsg = 'No support :(';
+        }
+        else if (/Mac/i.test(navigator.userAgent)) {
+            actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+        }
+        else {
+            actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+        }
+
+        return actionMsg;
+    }
+
+    $('code').each(function() {
+        var code = $(this),
+            text = code.text();
+
+        if (text.length > 5) {
+            var clip = new ClipboardJS('.copy-to-clipboard-button', {
+                text: function(trigger) {
+                    var text = $(trigger).prev('code').text();
+                    // remove a trailing line break, this may most likely
+                    // come from the browser / Hugo transformation
+                    text = text.replace(/\n$/, '');
+                    // removes leading $ signs from text in an assumption
+                    // that this has to be the unix prompt marker - weird
+                    return text.replace(/^\$\s/gm, '');
+                }
+            });
+
+            clip.on('success', function(e) {
+                e.clearSelection();
+                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+            });
+
+            clip.on('error', function(e) {
+                var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
+                $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                $(document).one('copy', function(){
+                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
+                });
+            });
+
+            var parent = code.parent();
+            var inPre = parent.prop('tagName') == 'PRE';
+            code.addClass('copy-to-clipboard-code');
+            if( inPre ){
+                parent.addClass( 'copy-to-clipboard' );
+            }
+            else{
+                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
+                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
+            }
+            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
+            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
+                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
+            });
+        }
+    });
+}
+
+function initArrowNav(){
+    // button navigation
+    jQuery(function() {
+        jQuery('a.nav-prev').click(function(){
+            location.href = jQuery(this).attr('href');
+        });
+        jQuery('a.nav-next').click(function() {
+            location.href = jQuery(this).attr('href');
+        });
+    });
+
+    // keyboard navigation
+    jQuery(document).keydown(function(e) {
+      if(e.which == '37') {
+        jQuery('a.nav-prev').click();
+      }
+      if(e.which == '39') {
+        jQuery('a.nav-next').click();
+      }
+    });
+
+    // avoid keyboard navigation for input fields
+    jQuery(formelements).keydown(function (e) {
+        if (e.which == '37' || e.which == '39') {
+            e.stopPropagation();
+        }
+    });
+}
+
+function initMenuScrollbar(){
+    if( isPrint ){
+        return;
+    }
+
+    var content = '#body-inner';
+    if( isIE ){
+        // IE can not display the topbar as sticky; so we let
+        // the whole body scroll instead of just the content
+        content = '#body';
+    }
+    var autofocus = false;
+    document.addEventListener('keydown', function(event){
+        // for initial keyboard scrolling support, no element
+        // may be hovered, but we still want to react on
+        // cursor/page up/down. because we can't hack
+        // the scrollbars implementation, we try to trick
+        // it and give focus to the scrollbar - only
+        // to just remove the focus right after scrolling
+        // happend
+        var p = document.querySelector(content).matches(':hover');
+        var m = document.querySelector('#content-wrapper').matches(':hover');
+        var f = event.target.matches( formelements );
+        if( !p && !m && !f ){
+            // only do this hack if none of our scrollbars
+            // is hovered
+            autofocus = true;
+            // if we are showing the sidebar as a flyout we
+            // want to scroll the content-wrapper, otherwise we want
+            // to scroll the body
+            var n = document.querySelector('body').matches('.sidebar-flyout');
+            if( n ){
+                psm.scrollbarY.focus();
+            }
+            else{
+                psc.scrollbarY.focus();
+            }
+        }
+    });
+    // scrollbars will install their own keyboard handlers
+    // that need to be executed inbetween our own handlers
+    var psm = new PerfectScrollbar('#content-wrapper');
+    var psc = new PerfectScrollbar(content);
+    window.addEventListener('resize', function(){
+        psm && psm.update();
+        psc && psc.update();
+    });
+    document.addEventListener('keydown', function(){
+        // if we facked initial scrolling, we want to
+        // remove the focus to not leave visual markers on
+        // the scrollbar
+        if( autofocus ){
+            psc.scrollbarY.blur();
+            psm.scrollbarY.blur();
+            autofocus = false;
+        }
+    });
+}
+
+function initLightbox(){
+    // wrap image inside a lightbox (to get a full size view in a popup)
+    var images = $("main#body-inner img").not(".inline");
+    images.wrap(function(){
+        var image =$(this);
+        var o = getUrlParameter(image[0].src);
+        var f = o['featherlight'];
+        // IF featherlight is false, do not use feather light
+        if (f != 'false') {
+            if (!image.parent("a").length) {
+                var html = $( "<a>" ).attr("href", image[0].src).attr("data-featherlight", "image").get(0).outerHTML;
+                return html;
+            }
+        }
+    });
+
+    $('a[rel="lightbox"]').featherlight({
+        root: 'div#body'
+    });
+}
+
+function initImageStyles(){
+    // change image styles, depending on parameters set to the image
+    var images = $("main#body-inner img").not(".inline");
+    images.each(function(index){
+        var image = $(this)
+        var o = getUrlParameter(image[0].src);
+        if (typeof o !== "undefined") {
+            var h = o["height"];
+            var w = o["width"];
+            var c = o["classes"];
+            image.css("width", function() {
+                if (typeof w !== "undefined") {
+                    return w;
+                } else {
+                    return "auto";
+                }
+            });
+            image.css("height", function() {
+                if (typeof h !== "undefined") {
+                    return h;
+                } else {
+                    return "auto";
+                }
+            });
+            if (typeof c !== "undefined") {
+                var classes = c.split(',');
+                for (i = 0; i < classes.length; i++) {
+                    image.addClass(classes[i]);
+                }
+            }
+        }
+    });
+}
+
+function initToc(){
+    function showNav(){
+        var b = document.querySelector( 'body' );
+        b.classList.toggle( 'sidebar-flyout' );
+        var n = b.matches('.sidebar-flyout');
+        if( n ){
+            b.classList.remove( 'toc-flyout' );
+        }
+    }
+    function showToc(){
+        var b = document.querySelector( 'body' );
+        b.classList.toggle( 'toc-flyout' );
+    }
+
+    document.querySelector( '#sidebar-overlay' ).addEventListener( 'click', showNav );
+    document.querySelector( '#sidebar-toggle' ).addEventListener( 'click', showNav );
+    document.querySelector( '#toc-overlay' ).addEventListener( 'click', showToc );
+    var t = document.querySelector( '#toc-menu' );
+    var p = document.querySelector( '.progress' );
+    if( t && p ){
+        // we may not have a toc
+        t.addEventListener( 'click', showToc );
+        p.addEventListener( 'click', showToc );
+    }
+}
+
+function initSwipeHandler(){
+    if( !touchsupport ){
+        return;
+    }
+
+    var startx = null;
+    var starty = null;
+    var handleStartX = function(evt) {
+        startx = evt.touches[0].clientX;
+        starty = evt.touches[0].clientY;
+        return false;
+    };
+    var handleMoveX = function(evt) {
+        if( startx !== null ){
+            var diffx = startx - evt.touches[0].clientX;
+            var diffy = starty - evt.touches[0].clientY || .1 ;
+            if( diffx / Math.abs( diffy ) < 2 ){
+                // detect mostly vertical swipes and reset our starting pos
+                // to not detect a horizontal move if vertical swipe is unprecise
+                startx = evt.touches[0].clientX;
+            }
+            else if( diffx > 30 ){
+                startx = null;
+                starty = null;
+                document.querySelector( 'body' ).classList.toggle( 'sidebar-flyout' );
+            }
+        }
+        return false;
+    };
+    var handleEndX = function(evt) {
+        startx = null;
+        starty = null;
+        return false;
+    };
+
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchstart", handleStartX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchstart", handleStartX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchstart", handleStartX); }, false);
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchmove", handleMoveX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchmove", handleMoveX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchmove", handleMoveX); }, false);
+    document.querySelector( '#sidebar-overlay' ).addEventListener("touchend", handleEndX, false);
+    document.querySelector( '#sidebar' ).addEventListener("touchend", handleEndX, false);
+    document.querySelectorAll( '#sidebar *' ).forEach( function(e){ e.addEventListener("touchend", handleEndX); }, false);
+}
+
 function scrollToActiveMenu() {
     window.setTimeout(function(){
-        var e = $("#sidebar ul.topics li.active a")[0];
+        var e = document.querySelector( '#sidebar ul.topics li.active a' );
         if( e && e.scrollIntoView ){
             e.scrollIntoView({
                 block: 'center',
             });
         }
-    }, 200);
+    }, 10);
+}
+
+function scrollToFragment() {
+    if( !window.location.hash || window.location.hash.length <= 1 ){
+        return;
+    }
+    window.setTimeout(function(){
+        var e = document.querySelector( window.location.hash );
+        if( e && e.scrollIntoView ){
+            e.scrollIntoView({
+                block: 'start',
+            });
+        }
+    }, 10);
 }
 
 // Get Parameters from some url
@@ -138,67 +523,6 @@ var getUrlParameter = function getUrlParameter(sPageURL) {
     return obj;
 };
 
-// Execute actions on images generated from Markdown pages
-var images = $("main#body-inner img").not(".inline");
-// Wrap image inside a featherlight (to get a full size view in a popup)
-images.wrap(function(){
-    var image =$(this);
-    var o = getUrlParameter(image[0].src);
-    var f = o['featherlight'];
-    // IF featherlight is false, do not use feather light
-    if (f != 'false') {
-        if (!image.parent("a").length) {
-            var html = $( "<a>" ).attr("href", image[0].src).attr("data-featherlight", "image").get(0).outerHTML;
-            return html;
-        }
-    }
-});
-
-// Change styles, depending on parameters set to the image
-images.each(function(index){
-    var image = $(this)
-    var o = getUrlParameter(image[0].src);
-    if (typeof o !== "undefined") {
-        var h = o["height"];
-        var w = o["width"];
-        var c = o["classes"];
-        image.css("width", function() {
-            if (typeof w !== "undefined") {
-                return w;
-            } else {
-                return "auto";
-            }
-        });
-        image.css("height", function() {
-            if (typeof h !== "undefined") {
-                return h;
-            } else {
-                return "auto";
-            }
-        });
-        if (typeof c !== "undefined") {
-            var classes = c.split(',');
-            for (i = 0; i < classes.length; i++) {
-                image.addClass(classes[i]);
-            }
-        }
-    }
-});
-
-// for the window resize
-$(window).resize(function() {
-    setMenuHeight();
-});
-// for the sticky header
-$(window).scroll(function() {
-    // add shadow when not in top position
-    if ($(this).scrollTop() == 0) {
-        $('#top-bar').removeClass("is-sticky");
-    }
-    else {
-        $('#top-bar').addClass("is-sticky");
-    }
-});
 // debouncing function from John Hann
 // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
 (function($, sr) {
@@ -229,50 +553,27 @@ $(window).scroll(function() {
 })(jQuery, 'smartresize');
 
 jQuery(function() {
-    restoreTabSelections();
+    initArrowNav();
     initMermaid();
+    initSwagger();
+    initMenuScrollbar();
     scrollToActiveMenu();
+    scrollToFragment();
+    initLightbox();
+    initImageStyles();
+    initToc();
+    initAnchorClipboard();
+    initCodeClipboard();
+    restoreTabSelections();
+    initSwipeHandler();
 
-    jQuery('#sidebar .category-icon').on('click', function() {
-        $( this ).toggleClass("fa-angle-down fa-angle-right") ;
-        $( this ).parent().parent().children('ul').toggle() ;
-        return false;
-    });
-
-    var sidebarStatus = searchStatus = 'open';
-    $('#sidebar .highlightable').perfectScrollbar();
-    setMenuHeight();
-
-    jQuery('#overlay').on('click', function() {
-        jQuery(document.body).toggleClass('sidebar-hidden');
-        sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-
-        return false;
-    });
-
-    jQuery('[data-sidebar-toggle]').on('click', function() {
-        jQuery(document.body).toggleClass('sidebar-hidden');
-        sidebarStatus = (jQuery(document.body).hasClass('sidebar-hidden') ? 'closed' : 'open');
-
-        return false;
-    });
     jQuery('[data-clear-history-toggle]').on('click', function() {
-        sessionStorage.clear();
-        location.reload();
-        return false;
-    });
-    jQuery('[data-search-toggle]').on('click', function() {
-        if (sidebarStatus == 'closed') {
-            jQuery('[data-sidebar-toggle]').trigger('click');
-            jQuery(document.body).removeClass('searchbox-hidden');
-            searchStatus = 'open';
-
-            return false;
+        for( var item in sessionStorage ){
+          if( item.substring( 0, baseUriFull.length ) === baseUriFull ){
+            sessionStorage.removeItem( item );
+          }
         }
-
-        jQuery(document.body).toggleClass('searchbox-hidden');
-        searchStatus = (jQuery(document.body).hasClass('searchbox-hidden') ? 'closed' : 'open');
-
+        location.reload();
         return false;
     });
 
@@ -285,13 +586,13 @@ jQuery(function() {
         if (!value.length) {
             $('ul.topics').removeClass('searched');
             items.css('display', 'block');
-            sessionStorage.removeItem('search-value');
+            sessionStorage.removeItem(baseUriFull+'search-value');
             $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
             return;
         }
 
-        sessionStorage.setItem('search-value', value);
+        sessionStorage.setItem(baseUriFull+'search-value', value);
         $("mark").parents(".expand-marked").removeClass("expand-marked");
         $(".highlightable").unhighlight({ element: 'mark' }).highlight(value, { element: 'mark' });
         $("mark").parents(".expand").addClass("expand-marked");
@@ -300,7 +601,7 @@ jQuery(function() {
 
         jQuery('[data-search-clear]').on('click', function() {
             jQuery('[data-search-input]').val('').trigger('input');
-            sessionStorage.removeItem('search-input');
+            sessionStorage.removeItem(baseUriFull+'search-input');
             $("mark").parents(".expand-marked").removeClass("expand-marked");
             $(".highlightable").unhighlight({ element: 'mark' })
         });
@@ -312,9 +613,8 @@ jQuery(function() {
         };
     });
 
-    if (sessionStorage.getItem('search-value')) {
-        var searchValue = sessionStorage.getItem('search-value')
-        $(document.body).removeClass('searchbox-hidden');
+    if (sessionStorage.getItem(baseUriFull+'search-value')) {
+        var searchValue = sessionStorage.getItem(baseUriFull+'search-value')
         $('[data-search-input]').val(searchValue);
         $('[data-search-input]').trigger('input');
         var searchedElem = $('#body-inner').find(':contains(' + searchValue + ')').get(0);
@@ -327,225 +627,19 @@ jQuery(function() {
         }
     }
 
-    $(".highlightable").highlight(sessionStorage.getItem('search-value'), { element: 'mark' });
+    $(".highlightable").highlight(sessionStorage.getItem(baseUriFull+'search-value'), { element: 'mark' });
     $("mark").parents(".expand").addClass("expand-marked");
 
-    // clipboard
-    var clipInit = false;
-    $('code').each(function() {
-        var code = $(this),
-            text = code.text();
-
-        if (text.length > 5) {
-            if (!clipInit) {
-                var clip = new ClipboardJS('.copy-to-clipboard-button', {
-                    text: function(trigger) {
-                        var text = $(trigger).prev('code').text();
-                        // remove a trailing line break, this may most likely
-                        // come from the browser / Hugo transformation
-                        text = text.replace(/\n$/, '');
-                        // removes leading $ signs from text in an assumption
-                        // that this has to be the unix prompt marker - weird
-                        return text.replace(/^\$\s/gm, '');
-                    }
-                });
-
-                clip.on('success', function(e) {
-                    e.clearSelection();
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                    $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                });
-
-                clip.on('error', function(e) {
-                    var inPre = $(e.trigger).parent().prop('tagName') == 'PRE';
-                    $(e.trigger).attr('aria-label', fallbackMessage(e.action)).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                    $(document).one('copy', function(){
-                        $(e.trigger).attr('aria-label', window.T_Copied_to_clipboard).addClass('tooltipped tooltipped-' + (inPre ? 'w' : 's'));
-                    });
-                });
-
-                clipInit = true;
-            }
-
-            var parent = code.parent();
-            var inPre = parent.prop('tagName') == 'PRE';
-            code.addClass('copy-to-clipboard-code');
-            if( inPre ){
-                parent.addClass( 'copy-to-clipboard' );
-            }
-            else{
-                code.replaceWith($('<span/>', {'class': 'copy-to-clipboard'}).append(code.clone() ));
-                code = parent.children('.copy-to-clipboard').last().children('.copy-to-clipboard-code');
-            }
-            code.after( $('<span>').addClass("copy-to-clipboard-button").attr("title", window.T_Copy_to_clipboard).append("<i class='fas fa-copy'></i>") );
-            code.next('.copy-to-clipboard-button').on('mouseleave', function() {
-                $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-            });
-        }
-    });
-
-    // allow keyboard control for prev/next links
-    jQuery(function() {
-        jQuery('a.nav-prev').click(function(){
-            location.href = jQuery(this).attr('href');
-        });
-        jQuery('a.nav-next').click(function() {
-            location.href = jQuery(this).attr('href');
-        });
-    });
-
-    jQuery('input, textarea').keydown(function (e) {
-         //  left and right arrow keys
-         if (e.which == '37' || e.which == '39') {
-             e.stopPropagation();
-         }
-     });
-
-    jQuery(document).keydown(function(e) {
-      // prev links - left arrow key
-      if(e.which == '37') {
-        jQuery('a.nav-prev').click();
-      }
-
-      // next links - right arrow key
-      if(e.which == '39') {
-        jQuery('a.nav-next').click();
-      }
-    });
-
-    $('#top-bar a:not(:has(img)):not(.btn)').addClass('highlight');
+    $('#topbar a:not(:has(img)):not(.btn)').addClass('highlight');
     $('#body-inner a:not(:has(img)):not(.btn):not(a[rel="footnote"])').addClass('highlight');
 
-    var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-    if (!touchsupport){ // browser doesn't support touch
-        $('#toc-menu').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-
-        $('.progress').hover(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-    }
-    if (touchsupport){ // browser does support touch
-        $('#toc-menu').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-        $('.progress').click(function() {
-            $('.progress').stop(true, false, true).fadeToggle(100);
-        });
-    }
-
-    /**
-    * Fix anchor scrolling that hides behind top nav bar
-    * Courtesy of https://stackoverflow.com/a/13067009/28106
-    *
-    * We could use pure css for this if only heading anchors were
-    * involved, but this works for any anchor, including footnotes
-    **/
-    (function (document, history, location) {
-        var HISTORY_SUPPORT = !!(history && history.pushState);
-
-        var anchorScrolls = {
-            ANCHOR_REGEX: /^#[^ ]+$/,
-            OFFSET_HEIGHT_PX: 50,
-
-            /**
-             * Establish events, and fix initial scroll position if a hash is provided.
-             */
-            init: function () {
-                this.scrollToCurrent();
-                $(window).on('hashchange', $.proxy(this, 'scrollToCurrent'));
-                $('body').on('click', 'a', $.proxy(this, 'delegateAnchors'));
-            },
-
-            /**
-             * Return the offset amount to deduct from the normal scroll position.
-             * Modify as appropriate to allow for dynamic calculations
-             */
-            getFixedOffset: function () {
-                return this.OFFSET_HEIGHT_PX;
-            },
-
-            /**
-             * If the provided href is an anchor which resolves to an element on the
-             * page, scroll to it.
-             * @param  {String} href
-             * @return {Boolean} - Was the href an anchor.
-             */
-            scrollIfAnchor: function (href, pushToHistory) {
-                var match, anchorOffset;
-
-                if (!this.ANCHOR_REGEX.test(href)) {
-                    return false;
-                }
-
-                match = document.getElementById(href.slice(1));
-
-                if (match) {
-                    anchorOffset = $(match).offset().top - this.getFixedOffset();
-                    $('html, body').animate({ scrollTop: anchorOffset });
-
-                    // Add the state to history as-per normal anchor links
-                    if (HISTORY_SUPPORT && pushToHistory) {
-                        history.pushState({}, document.title, location.pathname + href);
-                    }
-                }
-
-                return !!match;
-            },
-
-            /**
-             * Attempt to scroll to the current location's hash.
-             */
-            scrollToCurrent: function (e) {
-                if (this.scrollIfAnchor(window.location.hash) && e) {
-                    e.preventDefault();
-                }
-            },
-
-            /**
-             * If the click event's target was an anchor, fix the scroll position.
-             */
-            delegateAnchors: function (e) {
-                var elem = e.target;
-
-                if (this.scrollIfAnchor(elem.getAttribute('href'), true)) {
-                    e.preventDefault();
-                }
-            }
-        };
-
-        $(document).ready($.proxy(anchorScrolls, 'init'));
-    })(window.document, window.history, window.location);
-
-    // Add link button for every
-    var text, clip = new ClipboardJS('.anchor');
-    $("h1~h2,h1~h3,h1~h4,h1~h5,h1~h6").append(function(index, html){
-        var element = $(this);
-        var url = encodeURI(document.location.origin + document.location.pathname);
-        var link = url + "#"+element[0].id;
-        var html = " " + $( '<span>' ).addClass("anchor").attr("title", window.T_Copy_link_to_clipboard).attr("data-clipboard-text", link).append("<i class='fas fa-link fa-lg'></i>").get(0).outerHTML;
-        return html;
-    });
-
-    $(".anchor").on('mouseleave', function(e) {
-        $(this).attr('aria-label', null).removeClass('tooltipped tooltipped-s tooltipped-w');
-    });
-
-    clip.on('success', function(e) {
-        e.clearSelection();
-        $(e.trigger).attr('aria-label', window.T_Link_copied_to_clipboard).addClass('tooltipped tooltipped-s');
-    });
-
-    $('a[rel="lightbox"]').featherlight({
-        root: 'div#body'
-    });
-
-    sessionStorage.setItem(jQuery('body').data('url'), 1);
+    var visitedItem = baseUriFull + 'visited-url/'
+    sessionStorage.setItem(visitedItem+jQuery('body').data('url'), 1);
 
     // loop through the sessionStorage and see if something should be marked as visited
-    for (var url in sessionStorage) {
-        if (sessionStorage.getItem(url) == 1){
+    for( var item in sessionStorage ){
+        if( item.substring( 0, visitedItem.length ) === visitedItem && sessionStorage.getItem( item ) == 1 ){
+            var url = item.substring( visitedItem.length );
             // in case we have `relativeURLs=true` we have to strip the
             // relative path to root
             url = url.replace( /\.\.\//g, '/' ).replace( /^\/+\//, '/' );
