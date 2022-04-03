@@ -7,7 +7,7 @@ weight = 12
 1. Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę `ParticipantService.findByLogin(String login)` oraz odpowiedniego endpointa w klasie `ParticipantRestController`. Poniżej kod takiego endpointa:
     ```java
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getMeeting(@PathVariable("id") String login) {
+    public ResponseEntity<?> getParticipant(@PathVariable("id") String login) {
      Participant participant = participantService.findByLogin(login);
      if (participant == null) {
          return new ResponseEntity(HttpStatus.NOT_FOUND);
