@@ -10,16 +10,16 @@
     <title>Wprowadzenie :: Metody Wytwarzania Oprogramowania - wprowadzenie do REST</title>
     <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab1/index.xml" title="Metody Wytwarzania Oprogramowania - wprowadzenie do REST" />
     <link rel="alternate" type="application/json" href="https://jdajda.github.io/mwo/web2-lab1/index.json" title="Metody Wytwarzania Oprogramowania - wprowadzenie do REST" />
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1648944371" rel="stylesheet" id="variant-style">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1648944371" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1648944371" rel="stylesheet" media="print">
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1648944371"></script>
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1648947299" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1648947299" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1648947299" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1648947299"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -27,15 +27,15 @@
       var root_url="https://jdajda.github.io/mwo/web2-lab1/";
       var baseUri=root_url.replace(/\/$/, '');
       // translations
-      window.T_Copy_to_clipboard = '';
-      window.T_Copied_to_clipboard = '';
-      window.T_Copy_link_to_clipboard = '';
-      window.T_Link_copied_to_clipboard = '';
+      window.T_Copy_to_clipboard = 'Kopiuj do schowka';
+      window.T_Copied_to_clipboard = 'Skopiowano do schowka!';
+      window.T_Copy_link_to_clipboard = 'Skopiuj link do schowka';
+      window.T_Link_copied_to_clipboard = 'Skopiowano link do schowka!';
       // some further base stuff
       var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab1/';
       variants.init( [ 'green' ] );
     </script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1648944371"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1648947299"></script>
   </head>
   <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab1/">
     <div id="body" class="default-animation">
@@ -51,9 +51,9 @@
           </div>
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
-              <a href="#" id="sidebar-toggle" title=''><i class="fas fa-bars fa-fw"></i></a>
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
             </span>
-            <span id="toc-menu" title=''><i class="fas fa-list-alt fa-fw"></i></span>
+            <span id="toc-menu" title='Spis treści'><i class="fas fa-list-alt fa-fw"></i></span>
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab1/" aria-disabled="true"><span itemprop="name">Wprowadzenie</span></a></li>
@@ -102,12 +102,12 @@
         </div>
         <div class="searchbox default-animation">
           <label for="search-by"><i class="fas fa-search"></i></label>
-          <input data-search-input id="search-by" type="search" placeholder="">
+          <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1648944371"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1648944371"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1648944371"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1648947299"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1648947299"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1648947299"></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -152,16 +152,16 @@
               </a>
               <script>variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> </a></li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Wyczyść historię</a></li>
           </ul>
         </div>
         <div id="footer" class="footerFooter">
         </div>
       </div>
     </aside>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1648944371"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1648944371"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1648947299"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1648947299"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1648947299"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1648947299"></script>
   </body>
 </html>

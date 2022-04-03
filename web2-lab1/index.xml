@@ -18,7 +18,8 @@
       <link>https://jdajda.github.io/mwo/web2-lab1/02_participant/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab1/02_participant/</guid>
-      <description>Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę ParticipantService.findByLogin(String login) oraz odpowiedniego endpointa w klasie ParticipantRestController. Poniżej kod takiego endpointa: @RequestMapping(value = &amp;#34;/{id}&amp;#34;, method = RequestMethod.GET) public ResponseEntity&amp;lt;?&amp;gt; getMeeting(@PathVariable(&amp;#34;id&amp;#34;) String login) {  Participant participant = participantService.findByLogin(login);  if (participant == null) {  return new ResponseEntity(HttpStatus.NOT_FOUND);  }  return new ResponseEntity&amp;lt;Participant&amp;gt;(participant, HttpStatus.OK); }  Zaimplementuj dodawanie uczestników.</description>
+      <description>Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę ParticipantService.findByLogin(String login) oraz odpowiedniego endpointa w klasie ParticipantRestController. Poniżej kod takiego endpointa:
+@RequestMapping(value = &amp;#34;/{id}&amp;#34;, method = RequestMethod.GET) public ResponseEntity&amp;lt;?&amp;gt; getParticipant(@PathVariable(&amp;#34;id&amp;#34;) String login) {  Participant participant = participantService.findByLogin(login);  if (participant == null) {  return new ResponseEntity(HttpStatus.NOT_FOUND);  }  return new ResponseEntity&amp;lt;Participant&amp;gt;(participant, HttpStatus.OK); }   Jeśli chcesz żeby za każdym razem nie trzeba było restartować serwera, dodaj nową zależność do swojego pom.</description>
     </item>
     <item>
       <title>Wdrożenie</title>
