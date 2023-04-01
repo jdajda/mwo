@@ -1,45 +1,45 @@
 [
   {
-    "content": "Wprowadzenie Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST).\nJaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy. W tym celu będziemy potrzebowali dwóch głównych endpointów do obsługi samych uczestników oraz spotkań.\nPowodzenia!\nPlan zajęć  Pierwsze kroki Obsługa endpointa dla uczestników Wdrożenie Realizacja pozostałych endpointów Testy endpointów  ",
+    "content": "Celem systemu jest wsparcie w zakresie zapisów na przeróżne spotkania tematyczne. Zakładamy, że tworzonym systemie mamy dwie grupy informacji:\no użytkownikach systemu o spotkaniach Podstawowym zbiorem informacji są nasi użytkownicy. Bez nich organizacja spotkań nie ma sensu. Muszą posiadać konto w systemie, by mogli się zapisać lub wypisać ze spotkania.\nOd strony technicznej potrzebujemy więc zbudować 2 serwisy:\ndo zarządzania użytkownikami/uczestnikami do zarządzania spotkaniami Za chwilę pobierzesz projekt. Zawiera podstawowy szkielet, który należy rozszerzyć o brakujące serwisy.\n",
+    "description": "",
+    "tags": null,
+    "title": "Wprowadzenie",
+    "uri": "/00_intro/"
+  },
+  {
+    "content": "Wprowadzenie Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST).\nJaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy.\nPowodzenia!\nPlan zajęć Wprowadzenie Pierwsze kroki Pobieranie i dodawanie uczestników Dodatkowe funkcje dla uczestników Realizacja pozostałych endpointów ",
     "description": "",
     "tags": null,
     "title": "Wprowadzenie",
     "uri": "/"
   },
   {
-    "content": " Sforkuj projekt: https://github.com/jdajda/agh-mwo-enroller Następnie sklonuj swoje repozytorium i zaimportuj do IntelliJ IDEA Uruchom projekt (główna klasa: com.company.enroller.App). Powinieneś zobaczyć w ostatnich linijkach konsoli mniej więcej taką linijkę: INFO 11920 --- [ main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''  Zobacz czy serwis działa: http://localhost:8080/participants. Powinieneś zobaczyć: [{\"login\":\"user2\",\"password\":\"password\"},{\"login\":\"user3\",\"password\":\"password\"},{\"login\":\"user4\",\"password\":\"password\"},{\"login\":\"user5\",\"password\":\"password\"}]  Zobaczmy to samo z poziomu konsoli. Uruchom terminal (Git Bash) i wpisz curl -s http://localhost:8080/participants Sprawdź jaki kod odpowiedzi serwer zwraca adresu dla http://localhost:8080 Pobierz i zainstaluj aplikację Postman https://www.getpostman.com Zapoznaj się z aplikacją wywołując powyższe zapytania  ",
+    "content": " Sforkuj projekt: https://github.com/jdajda/agh-mwo-enroller Następnie sklonuj swoje repozytorium i zaimportuj do IntelliJ IDEA Uruchom projekt (główna klasa: com.company.enroller.App). Powinieneś zobaczyć w ostatnich linijkach konsoli mniej więcej taką linijkę: INFO 11920 --- [ main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path '' Zobacz czy serwis działa: http://localhost:8080/participants. Powinieneś zobaczyć: [{\"login\":\"user2\",\"password\":\"password\"},{\"login\":\"user3\",\"password\":\"password\"},{\"login\":\"user4\",\"password\":\"password\"},{\"login\":\"user5\",\"password\":\"password\"}] Zobaczmy to samo z poziomu konsoli. Uruchom terminal (Git Bash) i wpisz curl -s http://localhost:8080/participants Sprawdź jaki kod odpowiedzi serwer zwraca adresu dla http://localhost:8080 Pobierz i zainstaluj aplikację Postman https://www.getpostman.com Zapoznaj się z aplikacją wywołując powyższe zapytania ",
     "description": "",
     "tags": null,
     "title": "Pierwsze kroki",
     "uri": "/01_firststeps/"
   },
   {
-    "content": "  Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę ParticipantService.findByLogin(String login) oraz odpowiedniego endpointa w klasie ParticipantRestController. Poniżej kod takiego endpointa:\n@RequestMapping(value = \"/{id}\", method = RequestMethod.GET) public ResponseEntity\u003c?\u003e getParticipant(@PathVariable(\"id\") String login) {  Participant participant = participantService.findByLogin(login);  if (participant == null) {  return new ResponseEntity(HttpStatus.NOT_FOUND);  }  return new ResponseEntity\u003cParticipant\u003e(participant, HttpStatus.OK); }   Zaimplementuj dodawanie uczestników. Metoda powinna zostać zadeklarowana w sposób następujący:\n@RequestMapping(value = \"\", method = RequestMethod.POST) public ResponseEntity\u003c?\u003e registerParticipant(@RequestBody Participant participant)   Obsłuż sytuację kiedy dany uczestnik już istnieje. W tym celu należy wykorzystać funkcję findByLogin. W przypadku istnienia danego użytkownika należy wyjść z funkcji w następujący sposób:\nreturn new ResponseEntity(\"Unable to create. A participant with login \" + participant.getLogin() + \" already exist.\", HttpStatus.CONFLICT);   Żeby sprawdzić działanie wykorzystaj Postmana albo następującą komendę:\ncurl -H \"Content-Type: application/json\" -d '{\"login\":\"somelogin\", \"password\": \"some password\"}' localhost:8080/participants   Analogicznie zaimplementuj samodzielnie usuwanie uczestników oraz ich aktualizację.\n  ",
+    "content": " Do tej pory możemy tylko listować uczestników. Dodaj endpoint który pozwoli na pobranie jednego wskazanego uczestnika. W tym celu zaimplementuj metodę ParticipantService.findByLogin(String login) oraz odpowiedniego endpointa w klasie ParticipantRestController. Poniżej kod takiego endpointa:\n@RequestMapping(value = \"/{id}\", method = RequestMethod.GET) public ResponseEntity\u003c?\u003e getParticipant(@PathVariable(\"id\") String login) { Participant participant = participantService.findByLogin(login); if (participant == null) { return new ResponseEntity(HttpStatus.NOT_FOUND); } return new ResponseEntity\u003cParticipant\u003e(participant, HttpStatus.OK); } Zaimplementuj dodawanie uczestników. Metoda powinna zostać zadeklarowana w sposób następujący:\n@RequestMapping(value = \"\", method = RequestMethod.POST) public ResponseEntity\u003c?\u003e registerParticipant(@RequestBody Participant participant) Obsłuż sytuację kiedy dany uczestnik już istnieje. W tym celu należy wykorzystać funkcję findByLogin. W przypadku istnienia danego użytkownika należy wyjść z funkcji w następujący sposób:\nreturn new ResponseEntity(\"Unable to create. A participant with login \" + participant.getLogin() + \" already exist.\", HttpStatus.CONFLICT); Żeby sprawdzić działanie wykorzystaj Postmana albo następującą komendę:\ncurl -H \"Content-Type: application/json\" -d '{\"login\":\"somelogin\", \"password\": \"some password\"}' localhost:8080/participants ",
     "description": "",
     "tags": null,
-    "title": "Obsługa endpointa dla uczestników",
+    "title": "Pobieranie i dodawanie uczestników",
     "uri": "/02_participant/"
   },
   {
-    "content": "By wdrożyć nasze rozwiązanie wykorzystamy serwis Heroku w ramach jego darmowego planu. W tym celu będziemy musieli utworzyć konto w serwisie i następnie zintegrować je ze swoim repozytorium.\n Stwórz konto na Heroku www.heroku.com Stwórz nową aplikację.  Podczas konfiguracji podaj nazwę oraz lokalizację swojej maszyny  Podłącz Heroku do swojego Githuba i odszukaj odpowiednie repozytorium  Po podpięciu repozytorium będzie ono widoczne w Twojej konfiguracji.  Następnie aktywuj automatyczną aktualizację aplikacji i zdeploy’uj swoją aplikację.  Sprawdź czy aplikacja działa np. poprzez pobranie listy użytkowników. Aplikacja znajduje się pod adresem: https://NAZWA_TWOJEJ_APLIKACJI.herokuapp.com Wykonaj jakąś drobną zmianę i sprawdź czy Heroku ją wykryło.  ",
+    "content": " Analogicznie zaimplementuj samodzielnie usuwanie uczestników oraz ich aktualizację.\nRozszerz swoją implementację o moliwość sortowania uczestników po loginie. Dodatkowo chcemy mieć możliwość wyboru kolejności sortowania ASC lub DESC wg przykładów poniżej:\nSortowanie listy wyników po loginie w kolejności malejącej http://localhost:8080/participants?sortBy=login\u0026sortOrder=DESC Sortowanie listy wyników po loginie w kolejności rosnącej http://localhost:8080/participants?sortBy=login\u0026sortOrder=ASC Sortowanie listy wyników w domyślnej kolejności (parametr sortOrder nie jest obowiązkowy): http://localhost:8080/participants?sortBy=login Endpoint powinnien być odporny na podawanie błędnych/nie obsługiwanych wartości.\nDodaj parametr filtrowania listy wyników po loginie, zgodnie z poniższymi przykładami:\nhttp://localhost:8080/participants?key=login - pokaże tylko uczestników, które loginy zawierają słowo kluczowe login http://localhost:8080/participants?key=og - pokaże tylko uczestników, które loginy zawierają słowo kluczowe og Podpowiedź By zmapować parametr z URI na parametr wywołania funkcji użyj adnotacji @RequestParam. Poniżej przykład: public ResponseEntity\u003c?\u003e someFunction(@RequestParam(value = \"parametr_name\", defaultValue = \"\") String param)\tZadanie obróbki wyników zapytania przekaż do klas odpowiedzialnych za komunikację z bazą danych. ",
     "description": "",
     "tags": null,
-    "title": "Wdrożenie",
-    "uri": "/03_deployment/"
+    "title": "Dodatkowe funkcje dla uczestników",
+    "uri": "/03_participant_advanced/"
   },
   {
-    "content": "Zrealizuj endpoint dla spotkań. Ma umożliwiać:\n Wersja BASIC  Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Dodawanie spotkań Dodawanie uczestnika do spotkania Pobieranie uczestników spotkania   Wersja GOLD (dodatkowo do BASIC)  Usuwanie spotkań Aktualizację spotkań Usuwanie uczestnika ze spotkania   Wersja PREMIUM (dodatkowo do GOLD)  Sortowanie listy spotkań po tytule spotkania Przeszukiwanie listy spotkań po tytule i opisie (na zasadzie substring) Przeszukiwanie listy spotkań po zapisanym uczestniku spotkania    ",
+    "content": "Analogicznie do endpoint’ów dla uczestników zaimplementuj endpointy dla spotkań a więc:\nPobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Dodawanie spotkań Usuwanie spotkań Aktualizację spotkań ",
     "description": "",
     "tags": null,
-    "title": "Realizacja pozostałych endpointów",
-    "uri": "/04_other_endpoints/"
-  },
-  {
-    "content": " Przeanalizuj kod testów w klasie ParticipantRestControllerTest Uzupełnij testy korzystając z poniższej podpowiedzi: @Test public void addParticipant() throws Exception {  Participant participant = new Participant();  participant.setLogin(\"testlogin\");  participant.setPassword(\"testpassword\");  String inputJSON = \"{\\\"login\\\":\\\"testlogin\\\", \\\"password\\\":\\\"somepassword\\\"}\";   given(participantService.findByLogin(\"testlogin\")).willReturn((Participant)null);  given(participantService.create(participant)).willReturn(participant);  mvc.perform(post(\"/participants\").content(inputJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());   given(participantService.findByLogin(\"testlogin\")).willReturn(participant);  mvc.perform(post(\"/participants\").content(inputJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isConflict());   verify(participantService, times(2)).findByLogin(\"testlogin\"); }  Posługując się analogią, napisz testy dla aktualizacji i usuwania użytkowników.  ",
-    "description": "",
-    "tags": null,
-    "title": "Testy endpointów",
-    "uri": "/05_testing/"
+    "title": "Endpointy dla spotkań",
+    "uri": "/04_meeting/"
   },
   {
     "content": "",

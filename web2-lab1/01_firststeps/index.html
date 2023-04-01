@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="generator" content="Relearn 3.3.0&#43;tip">
     <meta name="description" content="">
     <meta name="author" content="Jacek Dajda">
     <title>Pierwsze kroki :: Metody Wytwarzania Oprogramowania - wprowadzenie do REST</title>
     <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab1/01_firststeps/index.xml" title="Metody Wytwarzania Oprogramowania - wprowadzenie do REST" />
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1648981492" rel="stylesheet" id="variant-style">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1648981492" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1648981492" rel="stylesheet" media="print">
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1648981492"></script>
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/nucleus.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/fontawesome-all.min.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/featherlight.min.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/perfect-scrollbar.min.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/auto-complete.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/theme-green.css?1680390449" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/variant.css?1680390449" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab1/css/print.css?1680390449" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/variant.js?1680390449"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -34,7 +34,7 @@
       var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab1/';
       variants.init( [ 'green' ] );
     </script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1648981492"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/jquery.min.js?1680390449"></script>
   </head>
   <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab1/01_firststeps/">
     <div id="body" class="default-animation">
@@ -43,10 +43,10 @@
       <nav id="topbar" class="highlightable">
         <div>
           <div class="navigation">
-             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab1/02_participant/" title="Obsługa endpointa dla uczestników"><i class="fas fa-chevron-right fa-fw"></i></a>
+             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab1/02_participant/" title="Pobieranie i dodawanie uczestników"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
-             <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab1/" title="Wprowadzenie"><i class="fas fa-chevron-left fa-fw"></i></a>
+             <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab1/00_intro/" title="Wprowadzenie"><i class="fas fa-chevron-left fa-fw"></i></a>
           </div>
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
@@ -71,7 +71,7 @@
 <li>Sforkuj projekt: <a href="https://github.com/jdajda/agh-mwo-enroller">https://github.com/jdajda/agh-mwo-enroller</a></li>
 <li>Następnie sklonuj swoje repozytorium i zaimportuj do IntelliJ IDEA</li>
 <li>Uruchom projekt (główna klasa: <code>com.company.enroller.App</code>). Powinieneś zobaczyć w ostatnich linijkach konsoli mniej więcej taką linijkę:
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>INFO 11920 --- [    main] o.<span style="color:#007f7f">s</span>.<span style="color:#007f7f">b</span>.<span style="color:#007f7f">w</span>.<span style="color:#007f7f">embedded</span>.<span style="color:#007f7f">tomcat</span>.<span style="color:#007f7f">TomcatWebServer</span>  : Tomcat started on port(s): 8080 (http) with context path <span style="color:#f00">&#39;&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>INFO <span style="color:#ff0;font-weight:bold">11920</span> --- [    main] o.<span style="color:#007f7f">s</span>.<span style="color:#007f7f">b</span>.<span style="color:#007f7f">w</span>.<span style="color:#007f7f">embedded</span>.<span style="color:#007f7f">tomcat</span>.<span style="color:#007f7f">TomcatWebServer</span>  : Tomcat started on port(s): <span style="color:#ff0;font-weight:bold">8080</span> (http) with context path <span style="color:#f00">&#39;&#39;</span>
 </span></span></code></pre></div></li>
 <li>Zobacz czy serwis działa: <a href="http://localhost:8080/participants">http://localhost:8080/participants</a>. Powinieneś zobaczyć:
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>[{<span style="color:#0ff;font-weight:bold">&#34;login&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;user2&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>},{<span style="color:#0ff;font-weight:bold">&#34;login&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;user3&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>},{<span style="color:#0ff;font-weight:bold">&#34;login&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;user4&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>},{<span style="color:#0ff;font-weight:bold">&#34;login&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;user5&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;password&#34;</span>}]
@@ -99,9 +99,9 @@ curl -s <a href="http://localhost:8080/participants">http://localhost:8080/parti
           <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1648981492"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1648981492"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1648981492"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/lunr.min.js?1680390449"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/auto-complete.js?1680390449"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab1/js/search.js?1680390449"></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -112,11 +112,11 @@ curl -s <a href="http://localhost:8080/participants">http://localhost:8080/parti
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics">
-          <li data-nav-id="/01_firststeps/" title="Pierwsze kroki" class="dd-item active parent"><a href="https://jdajda.github.io/mwo/web2-lab1/01_firststeps/">Pierwsze kroki<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/02_participant/" title="Obsługa endpointa dla uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/02_participant/">Obsługa endpointa dla uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/03_deployment/" title="Wdrożenie" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/03_deployment/">Wdrożenie<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/04_other_endpoints/" title="Realizacja pozostałych endpointów" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/04_other_endpoints/">Realizacja pozostałych endpointów<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/05_testing/" title="Testy endpointów" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/05_testing/">Testy endpointów<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/00_intro/" title="Wprowadzenie" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/00_intro/">Wprowadzenie<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/01_firststeps/" title="Pierwsze kroki" class="dd-item active"><a href="https://jdajda.github.io/mwo/web2-lab1/01_firststeps/">Pierwsze kroki<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/02_participant/" title="Pobieranie i dodawanie uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/02_participant/">Pobieranie i dodawanie uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/03_participant_advanced/" title="Dodatkowe funkcje dla uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/03_participant_advanced/">Dodatkowe funkcje dla uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/04_meeting/" title="Endpointy dla spotkań" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab1/04_meeting/">Endpointy dla spotkań<i class="fas fa-check read-icon"></i></a><ul></ul></li>
         </ul>
         <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"></div>
         <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"/>
@@ -153,9 +153,9 @@ curl -s <a href="http://localhost:8080/participants">http://localhost:8080/parti
         </div>
       </div>
     </aside>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1648981492"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1648981492"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1648981492"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1648981492"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/clipboard.min.js?1680390449"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/perfect-scrollbar.min.js?1680390449"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/featherlight.min.js?1680390449"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab1/js/theme.js?1680390449"></script>
   </body>
 </html>
