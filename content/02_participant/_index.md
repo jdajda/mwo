@@ -1,5 +1,5 @@
 +++
-title = "Obsługa endpointa dla uczestników"
+title = "Pobieranie i dodawanie uczestników"
 description = ""
 weight = 12
 +++
@@ -29,4 +29,3 @@ weight = 12
     ```java
    curl -H "Content-Type: application/json" -d '{"login":"somelogin", "password": "some password"}' localhost:8080/participants
     ```
-1. Analogicznie zaimplementuj samodzielnie usuwanie uczestników oraz ich aktualizację.
