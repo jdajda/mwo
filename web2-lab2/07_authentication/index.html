@@ -9,16 +9,16 @@
     <meta name="author" content="Jacek Dajda">
     <title>Dodajemy autentykację :: Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
     <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab2/07_authentication/index.xml" title="Metody Wytwarzania Oprogramowania - kończymy serwis REST" />
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/perfect-scrollbar.min.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/auto-complete.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme-green.css?1681522850" rel="stylesheet" id="variant-style">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/variant.css?1681522850" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/print.css?1681522850" rel="stylesheet" media="print">
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/variant.js?1681522850"></script>
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/perfect-scrollbar.min.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/auto-complete.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme-green.css?1681523506" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/variant.css?1681523506" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/print.css?1681523506" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/variant.js?1681523506"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -34,7 +34,7 @@
       var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab2/';
       variants.init( [ 'green' ] );
     </script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1681522850"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1681523506"></script>
   </head>
   <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab2/07_authentication/">
     <div id="body" class="default-animation">
@@ -43,7 +43,7 @@
       <nav id="topbar" class="highlightable">
         <div>
           <div class="navigation">
-             <span class="nav nav-next"><i class="fa fa-chevron-right fa-fw"></i></span>
+             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab2/08_authorization/" title="Dodajemy autoryzację"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
              <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab2/06_basic_security/" title="Zabezpieczamy aplikację"><i class="fas fa-chevron-left fa-fw"></i></a>
@@ -228,9 +228,9 @@ security.token_expiration_in_seconds = 3600
           <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/lunr.min.js?1681522850"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/auto-complete.js?1681522850"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/search.js?1681522850"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/lunr.min.js?1681523506"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/auto-complete.js?1681523506"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/search.js?1681523506"></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -244,9 +244,9 @@ security.token_expiration_in_seconds = 3600
           <li data-nav-id="/03_participant_advanced/" title="Dodatkowe funkcje dla uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/">Dodatkowe funkcje dla uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/04_meeting/" title="Endpointy dla spotkań" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/">Endpointy dla spotkań<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/05_deployment/" title="Deployment" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/">Deployment<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/08_authorization/" title="Zabezpieczamy aplikację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/08_authorization/">Zabezpieczamy aplikację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/06_basic_security/" title="Zabezpieczamy aplikację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/06_basic_security/">Zabezpieczamy aplikację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/07_authentication/" title="Dodajemy autentykację" class="dd-item active"><a href="https://jdajda.github.io/mwo/web2-lab2/07_authentication/">Dodajemy autentykację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/08_authorization/" title="Dodajemy autoryzację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/08_authorization/">Dodajemy autoryzację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
         </ul>
         <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"></div>
         <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"/>
@@ -283,9 +283,9 @@ security.token_expiration_in_seconds = 3600
         </div>
       </div>
     </aside>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/clipboard.min.js?1681522850"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/perfect-scrollbar.min.js?1681522850"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/featherlight.min.js?1681522850"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/theme.js?1681522850"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/clipboard.min.js?1681523506"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/perfect-scrollbar.min.js?1681523506"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/featherlight.min.js?1681523506"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/theme.js?1681523506"></script>
   </body>
 </html>

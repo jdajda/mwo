@@ -32,13 +32,6 @@ Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Co
     </item>
     <item>
       <title>Zabezpieczamy aplikację</title>
-      <link>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</guid>
-      <description>W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać. Dodaj w tym celu kolejną klasę JWTAuthorizationFilter do pakietu security: package com.company.enroller.security; import com.auth0.jwt.JWT; import com.auth0.jwt.JWTVerifier; import com.auth0.jwt.algorithms.Algorithm; import org.springframework.security.authentication.AuthenticationManager; import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; import org.springframework.security.core.Authentication; import org.springframework.security.core.context.SecurityContextHolder; import org.springframework.security.web.authentication.www.BasicAuthenticationFilter; import javax.servlet.FilterChain; import javax.servlet.ServletException; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import java.io.IOException; import java.io.UnsupportedEncodingException; import java.util.ArrayList; public class JWTAuthorizationFilter extends BasicAuthenticationFilter { private static final String HEADER_NAME = &amp;#34;Authorization&amp;#34;; private static final String TOKEN_PREFIX = &amp;#34;Bearer &amp;#34;; private final JWTVerifier verifier; public JWTAuthorizationFilter(AuthenticationManager authManager, String secret) throws UnsupportedEncodingException { super(authManager); verifier = JWT.</description>
-    </item>
-    <item>
-      <title>Zabezpieczamy aplikację</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</guid>
@@ -51,6 +44,13 @@ Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Co
       <guid>https://jdajda.github.io/mwo/web2-lab2/07_authentication/</guid>
       <description>Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni? Info Uwierzytelnianie i autoryzacja to dwa kluczowe procesy bezpieczeństwa informacji, które administratorzy wykorzystują do ochrony systemów i informacji. Uwierzytelnianie weryfikuje tożsamość użytkownika lub usługi, a autoryzacja określa jego prawa dostępu.
 Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji.</description>
+    </item>
+    <item>
+      <title>Dodajemy autoryzację</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</guid>
+      <description>W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać. Dodaj w tym celu kolejną klasę JWTAuthorizationFilter do pakietu security: package com.company.enroller.security; import com.auth0.jwt.JWT; import com.auth0.jwt.JWTVerifier; import com.auth0.jwt.algorithms.Algorithm; import org.springframework.security.authentication.AuthenticationManager; import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; import org.springframework.security.core.Authentication; import org.springframework.security.core.context.SecurityContextHolder; import org.springframework.security.web.authentication.www.BasicAuthenticationFilter; import javax.servlet.FilterChain; import javax.servlet.ServletException; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import java.io.IOException; import java.io.UnsupportedEncodingException; import java.util.ArrayList; public class JWTAuthorizationFilter extends BasicAuthenticationFilter { private static final String HEADER_NAME = &amp;#34;Authorization&amp;#34;; private static final String TOKEN_PREFIX = &amp;#34;Bearer &amp;#34;; private final JWTVerifier verifier; public JWTAuthorizationFilter(AuthenticationManager authManager, String secret) throws UnsupportedEncodingException { super(authManager); verifier = JWT.</description>
     </item>
   </channel>
 </rss>
