@@ -1,20 +1,31 @@
 +++
 title = "Wprowadzenie"
 description = ""
-weight = 10
+weight = 60
 +++
 
 # Wprowadzenie
 
-Celem dzisiejszych zajęć jest budowa warstwy serwerowej dla docelowej aplikacji. Tak jak mówiliśmy na wykładzie, obecnym standardem jest wykorzystanie podejścia opartego o tzw. mikroserwisy (REST). 
+Witaj ponownie! Dziś nadal budujemy serwis REST dla aplikacji do zarządzania spotkaniami typu __meetups__
 
-Jaką aplikację będziemy budowali? Chcemy zaimplementować aplikację, która umożliwi rejestrację uczestników na spotkania np. meetupy. 
+Celem dzisiejszych zajeć jest:
+- dalsze ćwiczenie budowy endpointów poprzez dodanie sortowania oraz nowych endpointów dla spotkań
+- uruchomienie rozwiązania do wdrożenia na zewnętrznych serwerach
+- wzbogacenie projektowanych mikroserwisów o mechanizmy bezpieczeństwa
 
-Powodzenia!
+**Powodzenia!**
+
+## Zaczynamy pracę
+1. Sforkuj i sklonuj repozytorium: https://github.com/jdajda/agh-mwo-enroller-lab2
+1. Zaimpoortuj projekt w IntelliJ
+1. Czekając na zaimportowanie projektu przejrzyj rozwiązanie
+1. Pobierz i zainstaluj [Postmana](https://www.postman.com)
+
 
 ## Plan zajęć
-0. [Wprowadzenie]({{%relref "00_intro/_index.md"%}})
-1. [Pierwsze kroki]({{%relref "01_firststeps/_index.md"%}})
-1. [Pobieranie i dodawanie uczestników]({{%relref "02_participant/_index.md"%}})
 1. [Dodatkowe funkcje dla uczestników]({{%relref "03_participant_advanced/_index.md"%}})
-1. [Realizacja pozostałych endpointów]({{%relref "04_meeting/_index.md"%}})
+1. [Kilka endpointów dla spotkań]({{%relref "04_meeting/_index.md"%}})
+1. [Deployment]({{%relref "05_deployment/_index.md"%}})
+1. [Zabezpieczamy aplikację]({{%relref "06_basic_security/_index.md"%}})
+1. [Dodajemy autentykację]({{%relref "07_authentication/_index.md"%}})
+1. [Dodajemy autoryzację]({{%relref "08_authorization/_index.md"%}})

@@ -1,6 +1,6 @@
-baseURL = "https://jdajda.github.io/mwo/web2-lab1"
+baseURL = "https://jdajda.github.io/mwo/web2-lab2"
 languageCode = "pl-PL"
-title = "Metody Wytwarzania Oprogramowania - wprowadzenie do REST"
+title = "Metody Wytwarzania Oprogramowania - kończymy serwis REST"
 theme = "hugo-theme-relearn-main"
 
 pygmentsCodeFences = true
