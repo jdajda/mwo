@@ -1,7 +1,7 @@
 +++
-title = "Zabezpieczamy aplikację"
+title = "Dodajemy autoryzację"
 description = ""
-weight = 30
+weight = 60
 +++
 
 1. W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać.
