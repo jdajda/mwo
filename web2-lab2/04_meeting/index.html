@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.111.3">
+    <meta name="generator" content="Relearn 3.3.0&#43;tip">
+    <meta name="description" content="">
+    <meta name="author" content="Jacek Dajda">
+    <title>Endpointy dla spotkań :: Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
+    <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/index.xml" title="Metody Wytwarzania Oprogramowania - kończymy serwis REST" />
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/perfect-scrollbar.min.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/auto-complete.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme-green.css?1681522850" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/variant.css?1681522850" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/print.css?1681522850" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/variant.js?1681522850"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="https://jdajda.github.io/mwo/web2-lab2/index.json";
+      var root_url="https://jdajda.github.io/mwo/web2-lab2/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Kopiuj do schowka';
+      window.T_Copied_to_clipboard = 'Skopiowano do schowka!';
+      window.T_Copy_link_to_clipboard = 'Skopiuj link do schowka';
+      window.T_Link_copied_to_clipboard = 'Skopiowano link do schowka!';
+      // some further base stuff
+      var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab2/';
+      variants.init( [ 'green' ] );
+    </script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1681522850"></script>
+  </head>
+  <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab2/04_meeting/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/" title="Deployment"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+             <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/" title="Dodatkowe funkcje dla uczestników"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab2/"><span itemprop="name">Wprowadzenie</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/" aria-disabled="true"><span itemprop="name">Endpointy dla spotkań</span></a></li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+          <article>
+
+<h1>Endpointy dla spotkań</h1>
+<p>Analogicznie do endpoint&rsquo;ów dla uczestników zaimplementuj poniższe endpointy dla spotkań:</p>
+<ol>
+<li>Pobieranie listy wszystkich spotkań</li>
+<li>Pobieranie listy pojedyncznego spotkania</li>
+<li><strong>Commit &amp; Push</strong> !</li>
+</ol>
+
+<div class="box notices tip">
+    <div class="box-label"><i class="fas fa-lightbulb fa-fw"></i> Podpowiedź</div>
+    <div class="box-content">
+<ol>
+<li>Pamiętaj, że w tym celu musisz dodać nowy kontroller:
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@RestController
+</span></span><span style="display:flex;"><span>@RequestMapping(<span style="color:#0ff;font-weight:bold">&#34;/meetings&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> MeetingRestController
+</span></span></code></pre></div></li>
+<li>Nie zapomnij również o odpowiednim serwisie:
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Autowired
+</span></span><span style="display:flex;"><span>MeetingService meetingService;
+</span></span></code></pre></div></li>
+</ol>
+
+    </div>
+</div>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<a href="https://moodle.lab.ii.agh.edu.pl"><img src="https://jdajda.github.io/mwo/web2-lab2/banner.png"></a>
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/lunr.min.js?1681522850"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/auto-complete.js?1681522850"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/search.js?1681522850"></script>
+      </div>
+      <div id="homelinks" class="default-animation">
+        <ul>
+          <li>
+              <a class="padding" href="https://jdajda.github.io/mwo/web2-lab2/"><i class="fas fa-home"></i> Home</a>
+          </li>
+        </ul>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics">
+          <li data-nav-id="/03_participant_advanced/" title="Dodatkowe funkcje dla uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/">Dodatkowe funkcje dla uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/04_meeting/" title="Endpointy dla spotkań" class="dd-item active"><a href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/">Endpointy dla spotkań<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/05_deployment/" title="Deployment" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/">Deployment<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/08_authorization/" title="Zabezpieczamy aplikację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/08_authorization/">Zabezpieczamy aplikację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/06_basic_security/" title="Zabezpieczamy aplikację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/06_basic_security/">Zabezpieczamy aplikację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/07_authentication/" title="Dodajemy autentykację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/07_authentication/">Dodajemy autentykację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+        </ul>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="green" value="green" selected>Green</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Wyczyść historię</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter">
+        </div>
+      </div>
+    </aside>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/clipboard.min.js?1681522850"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/perfect-scrollbar.min.js?1681522850"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/featherlight.min.js?1681522850"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/theme.js?1681522850"></script>
+  </body>
+</html>

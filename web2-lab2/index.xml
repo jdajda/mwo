@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wprowadzenie on Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
+    <link>https://jdajda.github.io/mwo/web2-lab2/</link>
+    <description>Recent content in Wprowadzenie on Metody Wytwarzania Oprogramowania - kończymy serwis REST</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl-PL</language><atom:link href="https://jdajda.github.io/mwo/web2-lab2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dodatkowe funkcje dla uczestników</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/</guid>
+      <description>Rozszerz swoją implementację o moliwość sortowania uczestników po loginie. Dodatkowo chcemy mieć możliwość wyboru kolejności sortowania ASC lub DESC wg przykładów poniżej:
+Sortowanie listy wyników po loginie w kolejności malejącej http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=DESC Sortowanie listy wyników po loginie w kolejności rosnącej http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=ASC Sortowanie listy wyników w domyślnej kolejności (parametr sortOrder nie jest obowiązkowy): http://localhost:8080/participants?sortBy=login Endpoint powinnien być odporny na podawanie błędnych/nie obsługiwanych wartości.
+Dodaj parametr filtrowania listy wyników po loginie, zgodnie z poniższymi przykładami:</description>
+    </item>
+    <item>
+      <title>Endpointy dla spotkań</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/04_meeting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/04_meeting/</guid>
+      <description>Analogicznie do endpoint&amp;rsquo;ów dla uczestników zaimplementuj poniższe endpointy dla spotkań:
+Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Commit &amp;amp; Push ! Podpowiedź Pamiętaj, że w tym celu musisz dodać nowy kontroller: @RestController @RequestMapping(&amp;#34;/meetings&amp;#34;) public class MeetingRestController Nie zapomnij również o odpowiednim serwisie: @Autowired MeetingService meetingService; </description>
+    </item>
+    <item>
+      <title>Deployment</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/05_deployment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/05_deployment/</guid>
+      <description>Zbuduj aplikację za pomocą Mavena i fazy &amp;lsquo;Package&amp;rsquo;. Zbudowaną paczkę uruchom z poziomu konsoli: java -jar &amp;lt;path-to-your-project&amp;gt;/agh-mwo-enroller/target/enroller-0.0.1-SNAPSHOT.jar Powinieneś zobaczyć, że aplikacja się uruchamia. Zakończ działanie aplikacji. Spróbuj wywołać fazę Clean - katalog target powinien zostać usunięty. Przyjrzyj się plikowi Dockerfile. To plik konfiguracyjny, który pozwoli nam uruchomić naszą aplikację w wirtualnym środowisku za pomocą środowiska Docker Docker umożliwia tworzenie, uruchamianie i zarządzanie aplikacjami w kontenerach. Kontenery to izolowane środowiska uruchomieniowe, które pozwalają na pakowanie aplikacji i ich zależności w spójny sposób.</description>
+    </item>
+    <item>
+      <title>Zabezpieczamy aplikację</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</guid>
+      <description>W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać. Dodaj w tym celu kolejną klasę JWTAuthorizationFilter do pakietu security: package com.company.enroller.security; import com.auth0.jwt.JWT; import com.auth0.jwt.JWTVerifier; import com.auth0.jwt.algorithms.Algorithm; import org.springframework.security.authentication.AuthenticationManager; import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; import org.springframework.security.core.Authentication; import org.springframework.security.core.context.SecurityContextHolder; import org.springframework.security.web.authentication.www.BasicAuthenticationFilter; import javax.servlet.FilterChain; import javax.servlet.ServletException; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import java.io.IOException; import java.io.UnsupportedEncodingException; import java.util.ArrayList; public class JWTAuthorizationFilter extends BasicAuthenticationFilter { private static final String HEADER_NAME = &amp;#34;Authorization&amp;#34;; private static final String TOKEN_PREFIX = &amp;#34;Bearer &amp;#34;; private final JWTVerifier verifier; public JWTAuthorizationFilter(AuthenticationManager authManager, String secret) throws UnsupportedEncodingException { super(authManager); verifier = JWT.</description>
+    </item>
+    <item>
+      <title>Zabezpieczamy aplikację</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</guid>
+      <description>Czas zabezpieczyć aplikację. Po pierwsze wysyłamy hasła razem z loginami. I do tego są one w plain-text. Po drugie każdy może wyświetlić zawartość naszej bazy. Na początek zabezpiecz aplikację przed wysyłaniem haseł. Wystarczy dodać odpowiednią adnotację w odpowiednim miejscu :-) @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) Sprawdź efekt działania. Jak? Dodajmy bibliotekę odpowiedzialną za bezpieczeństwo dla frameworka Spring: spring-boot-starter-security. Jak to zrobić? Powinieneś to już wiedzieć ;-) Następnie sprawdź efekt działania. Co zauważyłeś?</description>
+    </item>
+    <item>
+      <title>Dodajemy autentykację</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/07_authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/07_authentication/</guid>
+      <description>Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni? Info Uwierzytelnianie i autoryzacja to dwa kluczowe procesy bezpieczeństwa informacji, które administratorzy wykorzystują do ochrony systemów i informacji. Uwierzytelnianie weryfikuje tożsamość użytkownika lub usługi, a autoryzacja określa jego prawa dostępu.
+Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji.</description>
+    </item>
+  </channel>
+</rss>
