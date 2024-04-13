@@ -17,5 +17,8 @@ weight = 11
 1. Zobaczmy to samo z poziomu konsoli. Uruchom terminal (Git Bash) i wpisz
 curl -s [http://localhost:8080/participants](http://localhost:8080/participants)
 1. Sprawdź jaki kod odpowiedzi serwer zwraca adresu dla [http://localhost:8080](http://localhost:8080)
-1. Pobierz i zainstaluj aplikację Postman https://www.getpostman.com
+1. Pobierz i zainstaluj jedną z aplikacji:
+   - https://yaak.app
+   - https://httpie.io
+   - https://www.getpostman.com
 1. Zapoznaj się z aplikacją wywołując powyższe zapytania
