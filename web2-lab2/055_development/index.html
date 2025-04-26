@@ -7,8 +7,8 @@
     <meta name="generator" content="Relearn 3.3.0&#43;tip">
     <meta name="description" content="">
     <meta name="author" content="Jacek Dajda">
-    <title>Deployment :: Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
-    <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/index.xml" title="Metody Wytwarzania Oprogramowania - kończymy serwis REST" />
+    <title>Dalszy rozwój :: Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
+    <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab2/055_development/index.xml" title="Metody Wytwarzania Oprogramowania - kończymy serwis REST" />
     <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1745706237" rel="stylesheet">
     <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1745706237" rel="stylesheet">
     <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1745706237" rel="stylesheet">
@@ -36,17 +36,17 @@
     </script>
     <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1745706237"></script>
   </head>
-  <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab2/05_deployment/">
+  <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab2/055_development/">
     <div id="body" class="default-animation">
       <div id="sidebar-overlay"></div>
       <div id="toc-overlay"></div>
       <nav id="topbar" class="highlightable">
         <div>
           <div class="navigation">
-             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab2/055_development/" title="Dalszy rozwój"><i class="fas fa-chevron-right fa-fw"></i></a>
+             <a class="nav nav-next" href="https://jdajda.github.io/mwo/web2-lab2/06_basic_security/" title="Zabezpieczamy aplikację"><i class="fas fa-chevron-right fa-fw"></i></a>
           </div>
           <div class="navigation">
-             <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/" title="Endpointy dla spotkań"><i class="fas fa-chevron-left fa-fw"></i></a>
+             <a class="nav nav-prev" href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/" title="Deployment"><i class="fas fa-chevron-left fa-fw"></i></a>
           </div>
           <div id="breadcrumbs">
             <span id="sidebar-toggle-span">
@@ -55,7 +55,7 @@
             <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
               <meta itemprop="itemListOrder" content="Descending" />
               <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab2/"><span itemprop="name">Wprowadzenie</span></a> > </li>
-              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/" aria-disabled="true"><span itemprop="name">Deployment</span></a></li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="https://jdajda.github.io/mwo/web2-lab2/055_development/" aria-disabled="true"><span itemprop="name">Dalszy rozwój</span></a></li>
             </ol>
           </div>
         </div>
@@ -66,42 +66,23 @@
           </div>
           <article>
 
-<h1>Deployment</h1>
+<h1>Dalszy rozwój</h1>
 <ol>
-<li>Zbuduj aplikację za pomocą Mavena i fazy &lsquo;Package&rsquo;. Zbudowaną paczkę uruchom z poziomu konsoli:
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>java -jar &lt;path-to-your-project&gt;/agh-mwo-enroller/target/enroller-0.<span style="color:#007f7f">0</span>.<span style="color:#007f7f">1</span>-SNAPSHOT.<span style="color:#007f7f">jar</span>
-</span></span></code></pre></div></li>
-<li>Powinieneś zobaczyć, że aplikacja się uruchamia. Zakończ działanie aplikacji.</li>
-<li>Spróbuj wywołać fazę Clean - katalog <code>target</code> powinien zostać usunięty.</li>
-<li>Przyjrzyj się plikowi <code>Dockerfile</code>. To plik konfiguracyjny, który pozwoli nam uruchomić naszą aplikację w wirtualnym środowisku za pomocą środowiska <a href="https://www.docker.com">Docker</a> Docker umożliwia tworzenie, uruchamianie i zarządzanie aplikacjami w kontenerach. Kontenery to izolowane środowiska uruchomieniowe, które pozwalają na pakowanie aplikacji i ich zależności w spójny sposób. Dzięki temu aplikacja może działać w izolowanym środowisku bez konieczności instalacji dodatkowych zależności na maszynie hosta.
-<img src="https://jdajda.github.io/mwo/web2-lab2/docker-logo.png" alt="Docker Logo">
-Docker umożliwia łatwe przenoszenie aplikacji między różnymi środowiskami, co ułatwia zarządzanie wdrażaniem aplikacji oraz zapewnia spójność między różnymi środowiskami, na których aplikacja jest uruchamiana. Dzięki temu Docker jest obecnie szeroko stosowany i znacznie ułatwia zarządzanie infrastrukturą i wdrażanie aplikacji.</li>
-<li>Dockerfile w projekcie prezentuje przykład wieloetapowych buildów (Multi-stage builds). W pierwszej części pobiera on obraz Linuxowy (dystrybucja Amazon Linux) z zainstalowanym Mavenem po czym następuje budowanie projektu do postaci paczki JAR (mvn package). W drugiej części następujace skopiowanie paczki i jej uruchomienie. Jednocześnie w pliku deklarujemy, że maszyna udostępnia port 8080.</li>
-<li>Czas na uruchomienie aplikacji na zdalnym serwerze. Spróbujmy wykorzystać darmowe środowisko oferowane przez <a href="https://render.com">https://render.com</a>.</li>
-<li>Wejdź na stronę <a href="https://dashboard.render.com/login">https://dashboard.render.com/login</a> i zaloguj się swoim kontem Github
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step1.png" alt="Deployment Step 1"></li>
-<li>Potwierdź konto klikając w link, który przyszedł na emaila. <strong>Ankietę, którą zobaczysz możesz pominąć</strong></li>
-<li>Wybierz plan <em>Hobby</em>
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step2.png" alt="Deployment Step 2"></li>
-<li>Wybierz opcję New-&gt;Web Service
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step3.png" alt="Deployment Step 3"></li>
-<li>Znajdź i wybierz (Select) odpowiednie repozytorium na Githubie
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step4.png" alt="Deployment Step 4">
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step5.png" alt="Deployment Step 5">
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step6.png" alt="Deployment Step 6"></li>
-<li>Wybierz nowo dodane repozytorium z listy
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step7.png" alt="Deployment Step 7"></li>
-<li>Przejdziesz do ekranu konfiguracji <strong>You are deploying a Web Service</strong>. Przewiń niżej i wybierz darmowy plan dla projektów hobbystycznych.
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step8.png" alt="Deployment Step 8"></li>
-<li>Przewiń na sam dół i kliknij <strong>Deploy Web Service</strong></li>
-<li>Po tym kroku nastąpi pobranie Twojego kodu z repozytorium, pobranie obrazów na podstawie pliku Dockerfile, uruchomienie ich, pobranie zależności Mavena, zbudowanie produktu i uruchomienie aplikacji. Wszystko to zobaczysz w logach, które odświeżane są na żywo.
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step9.png" alt="Deployment Step 9"></li>
-<li>Pożądanym efektem jest komunikat następującej treści:
-<pre tabindex="0"><code>==&gt; Your service is live 🎉
-</code></pre><img src="https://jdajda.github.io/mwo/web2-lab2/render-step10.png" alt="Deployment Step 10"></li>
-<li>Po jego zobaczeniu możesz przejść do swojej aplikacji, której link znajdziesz u góry.
-<img src="https://jdajda.github.io/mwo/web2-lab2/render-step11.png" alt="Deployment Step 11"></li>
-<li>Przejdź do przeglądarki lub IntelliJ i sprawdź w nim działanie swojej upublicznionej aplikacji.</li>
+<li>Czas na dalszy rozwój aplikacji! Dodaj dodatkowe endpointy umożliwiające:
+<ul>
+<li>dodawanie uczestników do spotkania</li>
+<li>usuwanie uczestników ze spotkania</li>
+<li>pobieranie uczestników w ramach spotkania. Uczestnicy muszą być wcześniej zarejestrowani w systemie</li>
+</ul>
+</li>
+<li>Wszystkie niezbędne serwisy powinny być już dostępne</li>
+<li>Przykłady użycia endpointów:
+<ul>
+<li><code>GET meetings/{id}/participants</code> - pobiera zarejestrowanych uczestników spotkania</li>
+<li><code>POST meetings/{id}/participants</code> - dodaje uczestnika/uczestników spotkania</li>
+<li><code>DELETE meetings/{id}/participants/{login}</code> - usuwa uczestnika ze spotkania</li>
+</ul>
+</li>
 </ol>
 
             <footer class="footline">
@@ -135,8 +116,8 @@ Docker umożliwia łatwe przenoszenie aplikacji między różnymi środowiskami,
         <ul class="topics">
           <li data-nav-id="/03_participant_advanced/" title="Dodatkowe funkcje dla uczestników" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/">Dodatkowe funkcje dla uczestników<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/04_meeting/" title="Endpointy dla spotkań" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/04_meeting/">Endpointy dla spotkań<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/05_deployment/" title="Deployment" class="dd-item active"><a href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/">Deployment<i class="fas fa-check read-icon"></i></a><ul></ul></li>
-          <li data-nav-id="/055_development/" title="Dalszy rozwój" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/055_development/">Dalszy rozwój<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/05_deployment/" title="Deployment" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/05_deployment/">Deployment<i class="fas fa-check read-icon"></i></a><ul></ul></li>
+          <li data-nav-id="/055_development/" title="Dalszy rozwój" class="dd-item active"><a href="https://jdajda.github.io/mwo/web2-lab2/055_development/">Dalszy rozwój<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/06_basic_security/" title="Zabezpieczamy aplikację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/06_basic_security/">Zabezpieczamy aplikację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/07_authentication/" title="Dodajemy autentykację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/07_authentication/">Dodajemy autentykację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
           <li data-nav-id="/08_authorization/" title="Dodajemy autoryzację" class="dd-item"><a href="https://jdajda.github.io/mwo/web2-lab2/08_authorization/">Dodajemy autoryzację<i class="fas fa-check read-icon"></i></a><ul></ul></li>
@@ -151,7 +132,7 @@ Docker umożliwia łatwe przenoszenie aplikacji między różnymi środowiskami,
                 <span>&nbsp;</span>
                 <div class="select-style">
                   <select id="select-language" onchange="location = baseUri + this.value;">
-                    <option id="pl" value="/05_deployment/" selected></option>
+                    <option id="pl" value="/055_development/" selected></option>
                   </select>
                 </div>
                 <div class="select-clear"></div>

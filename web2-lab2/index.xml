@@ -11,46 +11,382 @@
       <link>https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/03_participant_advanced/</guid>
-      <description>Rozszerz swoją implementację o moliwość sortowania uczestników po loginie. Dodatkowo chcemy mieć możliwość wyboru kolejności sortowania ASC lub DESC wg przykładów poniżej:
-Sortowanie listy wyników po loginie w kolejności malejącej http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=DESC Sortowanie listy wyników po loginie w kolejności rosnącej http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=ASC Sortowanie listy wyników w domyślnej kolejności (parametr sortOrder nie jest obowiązkowy): http://localhost:8080/participants?sortBy=login Endpoint powinnien być odporny na podawanie błędnych/nie obsługiwanych wartości.
-Dodaj parametr filtrowania listy wyników po loginie, zgodnie z poniższymi przykładami:</description>
+      <description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Rozszerz swoją implementację o moliwość sortowania uczestników po loginie. Dodatkowo chcemy mieć możliwość wyboru kolejności sortowania &lt;em&gt;&lt;strong&gt;ASC&lt;/strong&gt;&lt;/em&gt; lub &lt;em&gt;&lt;strong&gt;DESC&lt;/strong&gt;&lt;/em&gt; wg przykładów poniżej:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Sortowanie listy wyników po loginie w kolejności malejącej &lt;code&gt;http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=DESC&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sortowanie listy wyników po loginie w kolejności rosnącej &lt;code&gt;http://localhost:8080/participants?sortBy=login&amp;amp;sortOrder=ASC&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sortowanie listy wyników w domyślnej kolejności (parametr &lt;code&gt;sortOrder&lt;/code&gt; nie jest obowiązkowy): &lt;code&gt;http://localhost:8080/participants?sortBy=login&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Endpoint powinnien być odporny na podawanie błędnych/nie obsługiwanych wartości.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dodaj parametr filtrowania listy wyników po loginie, zgodnie z poniższymi przykładami:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Endpointy dla spotkań</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/04_meeting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/04_meeting/</guid>
-      <description>Analogicznie do endpoint&amp;rsquo;ów dla uczestników zaimplementuj poniższe endpointy dla spotkań:
-Pobieranie listy wszystkich spotkań Pobieranie listy pojedyncznego spotkania Commit &amp;amp; Push ! Podpowiedź Pamiętaj, że w tym celu musisz dodać nowy kontroller: @RestController @RequestMapping(&amp;#34;/meetings&amp;#34;) public class MeetingRestController Nie zapomnij również o odpowiednim serwisie: @Autowired MeetingService meetingService; </description>
+      <description>&lt;p&gt;Analogicznie do endpoint&amp;rsquo;ów dla uczestników zaimplementuj poniższe endpointy dla spotkań:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pobieranie listy wszystkich spotkań&lt;/li&gt;
+&lt;li&gt;Pobieranie listy pojedyncznego spotkania&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commit &amp;amp; Push&lt;/strong&gt; !&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;box notices tip&#34;&gt;
+    &lt;div class=&#34;box-label&#34;&gt;&lt;i class=&#34;fas fa-lightbulb fa-fw&#34;&gt;&lt;/i&gt; Podpowiedź&lt;/div&gt;
+    &lt;div class=&#34;box-content&#34;&gt;
+&lt;ol&gt;
+&lt;li&gt;Pamiętaj, że w tym celu musisz dodać nowy kontroller:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@RestController
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@RequestMapping(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;/meetings&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;class&lt;/span&gt; MeetingRestController
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Nie zapomnij również o odpowiednim serwisie:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Autowired
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;MeetingService meetingService;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;</description>
     </item>
     <item>
       <title>Deployment</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/05_deployment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/05_deployment/</guid>
-      <description>Zbuduj aplikację za pomocą Mavena i fazy &amp;lsquo;Package&amp;rsquo;. Zbudowaną paczkę uruchom z poziomu konsoli: java -jar &amp;lt;path-to-your-project&amp;gt;/agh-mwo-enroller/target/enroller-0.0.1-SNAPSHOT.jar Powinieneś zobaczyć, że aplikacja się uruchamia. Zakończ działanie aplikacji. Spróbuj wywołać fazę Clean - katalog target powinien zostać usunięty. Przyjrzyj się plikowi Dockerfile. To plik konfiguracyjny, który pozwoli nam uruchomić naszą aplikację w wirtualnym środowisku za pomocą środowiska Docker Docker umożliwia tworzenie, uruchamianie i zarządzanie aplikacjami w kontenerach. Kontenery to izolowane środowiska uruchomieniowe, które pozwalają na pakowanie aplikacji i ich zależności w spójny sposób.</description>
+      <description>&lt;ol&gt;
+&lt;li&gt;Zbuduj aplikację za pomocą Mavena i fazy &amp;lsquo;Package&amp;rsquo;. Zbudowaną paczkę uruchom z poziomu konsoli:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;java -jar &amp;lt;path-to-your-project&amp;gt;/agh-mwo-enroller/target/enroller-0.&lt;span style=&#34;color:#007f7f&#34;&gt;0&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;1&lt;/span&gt;-SNAPSHOT.&lt;span style=&#34;color:#007f7f&#34;&gt;jar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Powinieneś zobaczyć, że aplikacja się uruchamia. Zakończ działanie aplikacji.&lt;/li&gt;
+&lt;li&gt;Spróbuj wywołać fazę Clean - katalog &lt;code&gt;target&lt;/code&gt; powinien zostać usunięty.&lt;/li&gt;
+&lt;li&gt;Przyjrzyj się plikowi &lt;code&gt;Dockerfile&lt;/code&gt;. To plik konfiguracyjny, który pozwoli nam uruchomić naszą aplikację w wirtualnym środowisku za pomocą środowiska &lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt; Docker umożliwia tworzenie, uruchamianie i zarządzanie aplikacjami w kontenerach. Kontenery to izolowane środowiska uruchomieniowe, które pozwalają na pakowanie aplikacji i ich zależności w spójny sposób. Dzięki temu aplikacja może działać w izolowanym środowisku bez konieczności instalacji dodatkowych zależności na maszynie hosta.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/docker-logo.png&#34; alt=&#34;Docker Logo&#34;&gt;
+Docker umożliwia łatwe przenoszenie aplikacji między różnymi środowiskami, co ułatwia zarządzanie wdrażaniem aplikacji oraz zapewnia spójność między różnymi środowiskami, na których aplikacja jest uruchamiana. Dzięki temu Docker jest obecnie szeroko stosowany i znacznie ułatwia zarządzanie infrastrukturą i wdrażanie aplikacji.&lt;/li&gt;
+&lt;li&gt;Dockerfile w projekcie prezentuje przykład wieloetapowych buildów (Multi-stage builds). W pierwszej części pobiera on obraz Linuxowy (dystrybucja Amazon Linux) z zainstalowanym Mavenem po czym następuje budowanie projektu do postaci paczki JAR (mvn package). W drugiej części następujace skopiowanie paczki i jej uruchomienie. Jednocześnie w pliku deklarujemy, że maszyna udostępnia port 8080.&lt;/li&gt;
+&lt;li&gt;Czas na uruchomienie aplikacji na zdalnym serwerze. Spróbujmy wykorzystać darmowe środowisko oferowane przez &lt;a href=&#34;https://render.com&#34;&gt;https://render.com&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Wejdź na stronę &lt;a href=&#34;https://dashboard.render.com/login&#34;&gt;https://dashboard.render.com/login&lt;/a&gt; i zaloguj się swoim kontem Github
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step1.png&#34; alt=&#34;Deployment Step 1&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Potwierdź konto klikając w link, który przyszedł na emaila. &lt;strong&gt;Ankietę, którą zobaczysz możesz pominąć&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Wybierz plan &lt;em&gt;Hobby&lt;/em&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step2.png&#34; alt=&#34;Deployment Step 2&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Wybierz opcję New-&amp;gt;Web Service
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step3.png&#34; alt=&#34;Deployment Step 3&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Znajdź i wybierz (Select) odpowiednie repozytorium na Githubie
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step4.png&#34; alt=&#34;Deployment Step 4&#34;&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step5.png&#34; alt=&#34;Deployment Step 5&#34;&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step6.png&#34; alt=&#34;Deployment Step 6&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Wybierz nowo dodane repozytorium z listy
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step7.png&#34; alt=&#34;Deployment Step 7&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Przejdziesz do ekranu konfiguracji &lt;strong&gt;You are deploying a Web Service&lt;/strong&gt;. Przewiń niżej i wybierz darmowy plan dla projektów hobbystycznych.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step8.png&#34; alt=&#34;Deployment Step 8&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Przewiń na sam dół i kliknij &lt;strong&gt;Deploy Web Service&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Po tym kroku nastąpi pobranie Twojego kodu z repozytorium, pobranie obrazów na podstawie pliku Dockerfile, uruchomienie ich, pobranie zależności Mavena, zbudowanie produktu i uruchomienie aplikacji. Wszystko to zobaczysz w logach, które odświeżane są na żywo.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step9.png&#34; alt=&#34;Deployment Step 9&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Pożądanym efektem jest komunikat następującej treści:
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;==&amp;gt; Your service is live 🎉
+&lt;/code&gt;&lt;/pre&gt;&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step10.png&#34; alt=&#34;Deployment Step 10&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Po jego zobaczeniu możesz przejść do swojej aplikacji, której link znajdziesz u góry.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/render-step11.png&#34; alt=&#34;Deployment Step 11&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Przejdź do przeglądarki lub IntelliJ i sprawdź w nim działanie swojej upublicznionej aplikacji.&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>Dalszy rozwój</title>
+      <link>https://jdajda.github.io/mwo/web2-lab2/055_development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jdajda.github.io/mwo/web2-lab2/055_development/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;Czas na dalszy rozwój aplikacji! Dodaj dodatkowe endpointy umożliwiające:
+&lt;ul&gt;
+&lt;li&gt;dodawanie uczestników do spotkania&lt;/li&gt;
+&lt;li&gt;usuwanie uczestników ze spotkania&lt;/li&gt;
+&lt;li&gt;pobieranie uczestników w ramach spotkania. Uczestnicy muszą być wcześniej zarejestrowani w systemie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Wszystkie niezbędne serwisy powinny być już dostępne&lt;/li&gt;
+&lt;li&gt;Przykłady użycia endpointów:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GET meetings/{id}/participants&lt;/code&gt; - pobiera zarejestrowanych uczestników spotkania&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;POST meetings/{id}/participants&lt;/code&gt; - dodaje uczestnika/uczestników spotkania&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DELETE meetings/{id}/participants/{login}&lt;/code&gt; - usuwa uczestnika ze spotkania&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Zabezpieczamy aplikację</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/06_basic_security/</guid>
-      <description>Czas zabezpieczyć aplikację. Po pierwsze wysyłamy hasła razem z loginami. I do tego są one w plain-text. Po drugie każdy może wyświetlić zawartość naszej bazy. Na początek zabezpiecz aplikację przed wysyłaniem haseł. Wystarczy dodać odpowiednią adnotację w odpowiednim miejscu :-) @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) Sprawdź efekt działania. Jak? Dodajmy bibliotekę odpowiedzialną za bezpieczeństwo dla frameworka Spring: spring-boot-starter-security. Jak to zrobić? Powinieneś to już wiedzieć ;-) Następnie sprawdź efekt działania. Co zauważyłeś?</description>
+      <description>&lt;ol&gt;
+&lt;li&gt;Czas zabezpieczyć aplikację. Po pierwsze wysyłamy hasła razem z loginami. I do tego są one w plain-text. Po drugie każdy może wyświetlić zawartość naszej bazy.&lt;/li&gt;
+&lt;li&gt;Na początek zabezpiecz aplikację przed wysyłaniem haseł. Wystarczy dodać odpowiednią adnotację w odpowiednim miejscu :-)
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@JsonProperty(access = JsonProperty.&lt;span style=&#34;color:#007f7f&#34;&gt;Access&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;WRITE_ONLY&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Sprawdź efekt działania. Jak?&lt;/li&gt;
+&lt;li&gt;Dodajmy bibliotekę odpowiedzialną za bezpieczeństwo dla frameworka Spring: &lt;code&gt;spring-boot-starter-security&lt;/code&gt;. Jak to zrobić? Powinieneś to już wiedzieć ;-)&lt;/li&gt;
+&lt;li&gt;Następnie sprawdź efekt działania. Co zauważyłeś? Czy aplikacja działa?&lt;/li&gt;
+&lt;li&gt;Czas rozbudować ochronę i zacząć szyfrować hasła. Wcześniej jednak musimy być w stanie cokolwiek w aplikacji zrobić, bo obecnie niewiele możemy. W tym celu pakiet &lt;code&gt;Security&lt;/code&gt; a w nim klasę &lt;code&gt;WebSecurity&lt;/code&gt; odpowiedzialną za kontrolę bezpieczeństwa:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;package&lt;/span&gt; com.company.enroller.security;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.config.annotation.web.builders.HttpSecurity;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.config.http.SessionCreationPolicy;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@EnableWebSecurity
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;class&lt;/span&gt; WebSecurity &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;extends&lt;/span&gt; WebSecurityConfigurerAdapter {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;void&lt;/span&gt; configure(HttpSecurity http) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; Exception {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    http.&lt;span style=&#34;color:#007f7f&#34;&gt;csrf&lt;/span&gt;().&lt;span style=&#34;color:#007f7f&#34;&gt;disable&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#007f7f&#34;&gt;authorizeRequests&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#007f7f&#34;&gt;anyRequest&lt;/span&gt;().&lt;span style=&#34;color:#007f7f&#34;&gt;permitAll&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#007f7f&#34;&gt;and&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#007f7f&#34;&gt;sessionManagement&lt;/span&gt;().&lt;span style=&#34;color:#007f7f&#34;&gt;sessionCreationPolicy&lt;/span&gt;(SessionCreationPolicy.&lt;span style=&#34;color:#007f7f&#34;&gt;STATELESS&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Sprawdź teraz efekt działania. Co zauważyłeś?&lt;/li&gt;
+&lt;li&gt;Teraz dodaj funkcję która nam zakoduje/zashasuje hasło do głównej klasy &lt;code&gt;App&lt;/code&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Bean
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; PasswordEncoder passwordEncoder() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; BCryptPasswordEncoder();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;A następnie ją wykorzystaj tam gdzie dodajesz nowego użytkownika:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;String hashedPassword = passwordEncoder.&lt;span style=&#34;color:#007f7f&#34;&gt;encode&lt;/span&gt;(participant.&lt;span style=&#34;color:#007f7f&#34;&gt;getPassword&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;participant.&lt;span style=&#34;color:#007f7f&#34;&gt;setPassword&lt;/span&gt;(hashedPassword);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Sprawdź efekt działania. Dodaj nowego użytkowika i zobacz czy jego hasło będzie zaszyfrowane w bazie danych. &lt;strong&gt;Zapamiętaj lub zapisz podane hasło!&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Na koniec: &lt;strong&gt;Commit, push, deploy!&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Dodajemy autentykację</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/07_authentication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/07_authentication/</guid>
-      <description>Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni? Info Uwierzytelnianie i autoryzacja to dwa kluczowe procesy bezpieczeństwa informacji, które administratorzy wykorzystują do ochrony systemów i informacji. Uwierzytelnianie weryfikuje tożsamość użytkownika lub usługi, a autoryzacja określa jego prawa dostępu.
-Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji.</description>
+      <description>&lt;ol&gt;
+&lt;li&gt;Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni?
+
+&lt;div class=&#34;box notices info&#34;&gt;
+    &lt;div class=&#34;box-label&#34;&gt;&lt;i class=&#34;fas fa-info-circle fa-fw&#34;&gt;&lt;/i&gt; Info&lt;/div&gt;
+    &lt;div class=&#34;box-content&#34;&gt;
+&lt;p&gt;&lt;strong&gt;Uwierzytelnianie&lt;/strong&gt; i &lt;strong&gt;autoryzacja&lt;/strong&gt; to dwa kluczowe procesy bezpieczeństwa informacji, które administratorzy wykorzystują do ochrony systemów i informacji. Uwierzytelnianie weryfikuje tożsamość użytkownika lub usługi, a autoryzacja określa jego prawa dostępu.&lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji. Działają więc na zasadzie dowodu tożsamości.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/jwt-diagram.png&#34; alt=&#34;JWT Diagram&#34;&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/jwt.png&#34; alt=&#34;JWT structure&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Więcej informacji znajdziesz na stronie &lt;a href=&#34;https://jwt.io&#34;&gt;https://jwt.io&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Naszym celem jest więc zaimplementowanie nowego endpointa, który na podstawie przesłanych danych wygeneruje nam odpowiedni token.&lt;/li&gt;
+&lt;li&gt;W tym celu dodaj do projektu bibliotekę dodającą wsparcie dla JWT: &lt;code&gt;java-jwt&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Dodaj klasę do pakietu &lt;code&gt;security&lt;/code&gt; pozwalającą na ładowanie użytkowników przez system autentykacji Springa:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;package&lt;/span&gt; com.company.enroller.security;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.company.enroller.model.Participant;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.company.enroller.persistence.ParticipantService;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.beans.factory.annotation.Autowired;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.userdetails.User;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.userdetails.UserDetails;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.userdetails.UserDetailsService;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.userdetails.UsernameNotFoundException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.stereotype.Service;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.util.Collections;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Service
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;class&lt;/span&gt; ParticipantProvider &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;implements&lt;/span&gt; UserDetailsService {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   @Autowired
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; ParticipantService participantService;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   @Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; UserDetails loadUserByUsername(String username) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; UsernameNotFoundException {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       Participant participant = participantService.&lt;span style=&#34;color:#007f7f&#34;&gt;findByLogin&lt;/span&gt;(username);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;if&lt;/span&gt; (participant == &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;null&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; UsernameNotFoundException(username);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; User(participant.&lt;span style=&#34;color:#007f7f&#34;&gt;getLogin&lt;/span&gt;(), participant.&lt;span style=&#34;color:#007f7f&#34;&gt;getPassword&lt;/span&gt;(), Collections.&lt;span style=&#34;color:#007f7f&#34;&gt;emptyList&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;W klasie WebSecurity wstrzyknij wymagane zależności i skonfiguruj system autentykacji nadpisując odpowiednią metodę:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;void&lt;/span&gt; configure(AuthenticationManagerBuilder auth) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; Exception {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   auth.&lt;span style=&#34;color:#007f7f&#34;&gt;userDetailsService&lt;/span&gt;(participantProvider).&lt;span style=&#34;color:#007f7f&#34;&gt;passwordEncoder&lt;/span&gt;(passwordEncoder);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;W katalogu &lt;code&gt;src/main/resources&lt;/code&gt; utwórz plik &lt;code&gt;application.properties&lt;/code&gt; z konfiguracją aplikacji:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;security.secret = ThisIsNotSoSecretSoChangeIt
+security.issuer = https://myenrollerdemo-twoj_login.b4a.run
+security.token_expiration_in_seconds = 3600
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;Do pakietu &lt;code&gt;security&lt;/code&gt; dodaj nową klasę. Będzie to filtr requestów, który wystawi token JWT gdy klient prześle poprawne dane logowania:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;package&lt;/span&gt; com.company.enroller.security;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.auth0.jwt.JWT;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.auth0.jwt.algorithms.Algorithm;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.company.enroller.model.Participant;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.fasterxml.jackson.databind.ObjectMapper;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.http.HttpMethod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.authentication.AuthenticationManager;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.authentication.BadCredentialsException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.Authentication;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.AuthenticationException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.userdetails.UserDetails;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.FilterChain;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletRequest;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletResponse;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.io.IOException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.time.LocalDateTime;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.time.ZoneId;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.util.ArrayList;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.util.Date;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;class&lt;/span&gt; JWTAuthenticationFilter &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;extends&lt;/span&gt; AbstractAuthenticationProcessingFilter {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; AuthenticationManager authenticationManager;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; String secret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; String issuer;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;int&lt;/span&gt; tokenExpiration;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; JWTAuthenticationFilter(AuthenticationManager authenticationManager, String secret, String issuer, &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;int&lt;/span&gt; tokenExpiration) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;super&lt;/span&gt;(&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; AntPathRequestMatcher(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;/tokens&amp;#34;&lt;/span&gt;, HttpMethod.&lt;span style=&#34;color:#007f7f&#34;&gt;POST&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;name&lt;/span&gt;()));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;authenticationManager&lt;/span&gt; = authenticationManager;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;secret&lt;/span&gt; = secret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;issuer&lt;/span&gt; = issuer;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;tokenExpiration&lt;/span&gt; = tokenExpiration;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   @Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; AuthenticationException {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           Participant participant = &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; ObjectMapper().&lt;span style=&#34;color:#007f7f&#34;&gt;readValue&lt;/span&gt;(req.&lt;span style=&#34;color:#007f7f&#34;&gt;getInputStream&lt;/span&gt;(), Participant.&lt;span style=&#34;color:#007f7f&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           Authentication authentication = &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; UsernamePasswordAuthenticationToken(participant.&lt;span style=&#34;color:#007f7f&#34;&gt;getLogin&lt;/span&gt;(), participant.&lt;span style=&#34;color:#007f7f&#34;&gt;getPassword&lt;/span&gt;(), &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;&amp;gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;return&lt;/span&gt; authenticationManager.&lt;span style=&#34;color:#007f7f&#34;&gt;authenticate&lt;/span&gt;(authentication);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       } &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;catch&lt;/span&gt; (IOException e) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; BadCredentialsException(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;Invalid login request.&amp;#34;&lt;/span&gt;, e);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   @Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;void&lt;/span&gt; successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; IOException {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       String login = ((UserDetails) auth.&lt;span style=&#34;color:#007f7f&#34;&gt;getPrincipal&lt;/span&gt;()).&lt;span style=&#34;color:#007f7f&#34;&gt;getUsername&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       LocalDateTime now = LocalDateTime.&lt;span style=&#34;color:#007f7f&#34;&gt;now&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       String token = JWT.&lt;span style=&#34;color:#007f7f&#34;&gt;create&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;withIssuer&lt;/span&gt;(issuer)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;withSubject&lt;/span&gt;(login)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;withIssuedAt&lt;/span&gt;(Date.&lt;span style=&#34;color:#007f7f&#34;&gt;from&lt;/span&gt;(now.&lt;span style=&#34;color:#007f7f&#34;&gt;atZone&lt;/span&gt;(ZoneId.&lt;span style=&#34;color:#007f7f&#34;&gt;systemDefault&lt;/span&gt;()).&lt;span style=&#34;color:#007f7f&#34;&gt;toInstant&lt;/span&gt;()))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;withExpiresAt&lt;/span&gt;(Date.&lt;span style=&#34;color:#007f7f&#34;&gt;from&lt;/span&gt;(now.&lt;span style=&#34;color:#007f7f&#34;&gt;plusSeconds&lt;/span&gt;(tokenExpiration).&lt;span style=&#34;color:#007f7f&#34;&gt;atZone&lt;/span&gt;(ZoneId.&lt;span style=&#34;color:#007f7f&#34;&gt;systemDefault&lt;/span&gt;()).&lt;span style=&#34;color:#007f7f&#34;&gt;toInstant&lt;/span&gt;()))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;withClaim&lt;/span&gt;(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;role&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;participant&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;               .&lt;span style=&#34;color:#007f7f&#34;&gt;sign&lt;/span&gt;(Algorithm.&lt;span style=&#34;color:#007f7f&#34;&gt;HMAC256&lt;/span&gt;(secret));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       res.&lt;span style=&#34;color:#007f7f&#34;&gt;getWriter&lt;/span&gt;().&lt;span style=&#34;color:#007f7f&#34;&gt;write&lt;/span&gt;(String.&lt;span style=&#34;color:#007f7f&#34;&gt;format&lt;/span&gt;(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;{\&amp;#34;token\&amp;#34;: \&amp;#34;%s\&amp;#34;}&amp;#34;&lt;/span&gt;, token));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;W klasie WebSecurity w metodzie configure zarejestruj stworzony filtr:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;addFilterBefore&lt;/span&gt;(&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; JWTAuthenticationFilter(authenticationManager(), secret, issuer, tokenExpiration), UsernamePasswordAuthenticationFilter.&lt;span style=&#34;color:#007f7f&#34;&gt;class&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Potrzebne wartości wstrzyknij z konfiguracji aplikacji za pomocą adnotacji @Value, na zasadzie:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@Value(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;${security.secret}&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;String secret;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Przetestuj wystawianie tokena za pomocą Postmana. W tym przypomij sobie z poprzedniego kroku dane nowego użytkownika. Następnie wywołaj żądanie utworzenia nowego tokenu podając dane wstawionego użytkownika:
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -s -d &amp;#39;{&amp;#34;login&amp;#34;:&amp;#34;janek&amp;#34;, &amp;#34;password&amp;#34;:&amp;#34;tajemne&amp;#34;}&amp;#39; -H &amp;#34;Content-Type: application/json&amp;#34; -X POST http://localhost:8080/api/tokens
+&lt;/code&gt;&lt;/pre&gt;&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/fetching-token-1.png&#34; alt=&#34;Token 1&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Efektem powinien być otrzymany na wyjściu token.
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/fetching-token-2.png&#34; alt=&#34;Token 2&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Możesz go zdekodować na znanej już stronie &lt;a href=&#34;https://jwt.io&#34;&gt;https://jwt.io&lt;/a&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/fetching-token-3.png&#34; alt=&#34;Token 3&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Sprawdź kiedy token wygaśnie - zdekoduj datę wygaśnięcia np. przy pomocy strony: &lt;a href=&#34;https://www.epochconverter.com&#34;&gt;https://www.epochconverter.com&lt;/a&gt;
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/fetching-token-4.png&#34; alt=&#34;Token 4&#34;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commit, push, deploy!&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     <item>
       <title>Dodajemy autoryzację</title>
       <link>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://jdajda.github.io/mwo/web2-lab2/08_authorization/</guid>
-      <description>W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać. Dodaj w tym celu kolejną klasę JWTAuthorizationFilter do pakietu security: package com.company.enroller.security; import com.auth0.jwt.JWT; import com.auth0.jwt.JWTVerifier; import com.auth0.jwt.algorithms.Algorithm; import org.springframework.security.authentication.AuthenticationManager; import org.springframework.security.authentication.UsernamePasswordAuthenticationToken; import org.springframework.security.core.Authentication; import org.springframework.security.core.context.SecurityContextHolder; import org.springframework.security.web.authentication.www.BasicAuthenticationFilter; import javax.servlet.FilterChain; import javax.servlet.ServletException; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import java.io.IOException; import java.io.UnsupportedEncodingException; import java.util.ArrayList; public class JWTAuthorizationFilter extends BasicAuthenticationFilter { private static final String HEADER_NAME = &amp;#34;Authorization&amp;#34;; private static final String TOKEN_PREFIX = &amp;#34;Bearer &amp;#34;; private final JWTVerifier verifier; public JWTAuthorizationFilter(AuthenticationManager authManager, String secret) throws UnsupportedEncodingException { super(authManager); verifier = JWT.</description>
+      <description>&lt;ol&gt;
+&lt;li&gt;W tym punkcie chcemy zabezpieczyć endpointy przed niepowołowanym dostępem. Potrafimy już identyfikować użytkowników, czas z tego skorzystać.&lt;/li&gt;
+&lt;li&gt;Dodaj w tym celu kolejną klasę &lt;code&gt;JWTAuthorizationFilter&lt;/code&gt; do pakietu &lt;code&gt;security&lt;/code&gt;:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;package&lt;/span&gt; com.company.enroller.security;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.auth0.jwt.JWT;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.auth0.jwt.JWTVerifier;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; com.auth0.jwt.algorithms.Algorithm;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.authentication.AuthenticationManager;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.Authentication;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.core.context.SecurityContextHolder;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.FilterChain;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.ServletException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletRequest;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; javax.servlet.http.HttpServletResponse;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.io.IOException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.io.UnsupportedEncodingException;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;import&lt;/span&gt; java.util.ArrayList;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;class&lt;/span&gt; JWTAuthorizationFilter &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;extends&lt;/span&gt; BasicAuthenticationFilter {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; String HEADER_NAME = &lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;Authorization&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; String TOKEN_PREFIX = &lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;Bearer &amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;final&lt;/span&gt; JWTVerifier verifier;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;public&lt;/span&gt; JWTAuthorizationFilter(AuthenticationManager authManager, String secret) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; UnsupportedEncodingException {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;super&lt;/span&gt;(authManager);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        verifier = JWT.&lt;span style=&#34;color:#007f7f&#34;&gt;require&lt;/span&gt;(Algorithm.&lt;span style=&#34;color:#007f7f&#34;&gt;HMAC256&lt;/span&gt;(secret)).&lt;span style=&#34;color:#007f7f&#34;&gt;acceptExpiresAt&lt;/span&gt;(0).&lt;span style=&#34;color:#007f7f&#34;&gt;build&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    @Override
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;void&lt;/span&gt; doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;throws&lt;/span&gt; IOException, ServletException {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        String header = req.&lt;span style=&#34;color:#007f7f&#34;&gt;getHeader&lt;/span&gt;(HEADER_NAME);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;if&lt;/span&gt; (header != &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;null&lt;/span&gt; &amp;amp;&amp;amp; header.&lt;span style=&#34;color:#007f7f&#34;&gt;startsWith&lt;/span&gt;(TOKEN_PREFIX)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            String token = header.&lt;span style=&#34;color:#007f7f&#34;&gt;substring&lt;/span&gt;(TOKEN_PREFIX.&lt;span style=&#34;color:#007f7f&#34;&gt;length&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Authentication authentication = extractUserFromToken(token);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            SecurityContextHolder.&lt;span style=&#34;color:#007f7f&#34;&gt;getContext&lt;/span&gt;().&lt;span style=&#34;color:#007f7f&#34;&gt;setAuthentication&lt;/span&gt;(authentication);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        chain.&lt;span style=&#34;color:#007f7f&#34;&gt;doFilter&lt;/span&gt;(req, res);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;private&lt;/span&gt; Authentication extractUserFromToken(String token) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        String username = verifier.&lt;span style=&#34;color:#007f7f&#34;&gt;verify&lt;/span&gt;(token).&lt;span style=&#34;color:#007f7f&#34;&gt;getSubject&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;if&lt;/span&gt; (username != &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;null&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; UsernamePasswordAuthenticationToken(username, &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;null&lt;/span&gt;, &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;&amp;gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;null&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Zarejestruj ten filtr w konfiguracji zabezpieczeń:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;addFilter&lt;/span&gt;(&lt;span style=&#34;color:#fff;font-weight:bold&#34;&gt;new&lt;/span&gt; JWTAuthorizationFilter(authenticationManager(), secret))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Skonfiguruj mechanizm zabezpieczeń (klasa WebSecurity) tak, by nie pozwalał na korzystanie z aplikacji bez zalogowania się (poza endpointem wystawiającym token oraz rejestrującym użytkownika):
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;authorizeRequests&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;antMatchers&lt;/span&gt;(HttpMethod.&lt;span style=&#34;color:#007f7f&#34;&gt;POST&lt;/span&gt;, &lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;/participants&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#007f7f&#34;&gt;permitAll&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;antMatchers&lt;/span&gt;(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;/tokens&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#007f7f&#34;&gt;permitAll&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#007f7f&#34;&gt;antMatchers&lt;/span&gt;(&lt;span style=&#34;color:#0ff;font-weight:bold&#34;&gt;&amp;#34;/**&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#007f7f&#34;&gt;authenticated&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Sprawdź, czy nadal możesz założyć konto i czy dostęp do &lt;code&gt;/meetings&lt;/code&gt; rzeczywiście został zablokowany, jeśli użytkownik nie jest zalogowany. Zalogowanie to pozyskanie tokena, a następnie jego użycie w każdym zapytaniu do endpointa. W tym celu musisz go przesłać w nagłówku zapytania. Możesz to zrobić w Postmanie tak jak na załączonym obrazku:
+&lt;img src=&#34;https://jdajda.github.io/mwo/web2-lab2/authorization.png&#34; alt=&#34;Authorization&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Gotowe! &lt;strong&gt;Commit, push, deploy!&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
   </channel>
 </rss>
