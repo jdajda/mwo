@@ -9,16 +9,16 @@
     <meta name="author" content="Jacek Dajda">
     <title>Dodajemy autentykację :: Metody Wytwarzania Oprogramowania - kończymy serwis REST</title>
     <link rel="alternate" type="application/rss&#43;xml" href="https://jdajda.github.io/mwo/web2-lab2/07_authentication/index.xml" title="Metody Wytwarzania Oprogramowania - kończymy serwis REST" />
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/perfect-scrollbar.min.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/auto-complete.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme-green.css?1745706237" rel="stylesheet" id="variant-style">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/variant.css?1745706237" rel="stylesheet">
-    <link href="https://jdajda.github.io/mwo/web2-lab2/css/print.css?1745706237" rel="stylesheet" media="print">
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/variant.js?1745706237"></script>
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/nucleus.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/fontawesome-all.min.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/featherlight.min.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/perfect-scrollbar.min.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/auto-complete.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/theme-green.css?1745714372" rel="stylesheet" id="variant-style">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/variant.css?1745714372" rel="stylesheet">
+    <link href="https://jdajda.github.io/mwo/web2-lab2/css/print.css?1745714372" rel="stylesheet" media="print">
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/variant.js?1745714372"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -34,7 +34,7 @@
       var baseUriFull='https:\/\/jdajda.github.io\/mwo\/web2-lab2/';
       variants.init( [ 'green' ] );
     </script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1745706237"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/jquery.min.js?1745714372"></script>
   </head>
   <body class="mobile-support" data-url="https://jdajda.github.io/mwo/web2-lab2/07_authentication/">
     <div id="body" class="default-animation">
@@ -68,7 +68,8 @@
 
 <h1>Dodajemy autentykację</h1>
 <ol>
-<li>Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni?
+<li>
+<p>Czas przejść do autentykacji. A może autoryzacji? Czy to jest to samo czy czymś się jednak różni?
 
 <div class="box notices info">
     <div class="box-label"><i class="fas fa-info-circle fa-fw"></i> Info</div>
@@ -76,15 +77,24 @@
 <p><strong>Uwierzytelnianie</strong> i <strong>autoryzacja</strong> to dwa kluczowe procesy bezpieczeństwa informacji, które administratorzy wykorzystują do ochrony systemów i informacji. Uwierzytelnianie weryfikuje tożsamość użytkownika lub usługi, a autoryzacja określa jego prawa dostępu.</p>
 
     </div>
-</div></li>
-<li>Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji. Działają więc na zasadzie dowodu tożsamości.
+</div></p>
+</li>
+<li>
+<p>Do weryfikacji tożsamości obecnie najczęściej wykorzystuje się tokeny, a w szczególności tokeny JWT. Tokeny te zawierają komplet informacji o użytkowniku. Serwer nie musi posiadać przetwarzać dodatkowych informacji. Działają więc na zasadzie dowodu tożsamości.
 <img src="https://jdajda.github.io/mwo/web2-lab2/jwt-diagram.png" alt="JWT Diagram">
-<img src="https://jdajda.github.io/mwo/web2-lab2/jwt.png" alt="JWT structure"></li>
-<li>Więcej informacji znajdziesz na stronie <a href="https://jwt.io">https://jwt.io</a>.</li>
-<li>Naszym celem jest więc zaimplementowanie nowego endpointa, który na podstawie przesłanych danych wygeneruje nam odpowiedni token.</li>
-<li>W tym celu dodaj do projektu bibliotekę dodającą wsparcie dla JWT: <code>java-jwt</code>.</li>
-<li>Dodaj klasę do pakietu <code>security</code> pozwalającą na ładowanie użytkowników przez system autentykacji Springa:</li>
-</ol>
+<img src="https://jdajda.github.io/mwo/web2-lab2/jwt.png" alt="JWT structure"></p>
+</li>
+<li>
+<p>Więcej informacji znajdziesz na stronie <a href="https://jwt.io">https://jwt.io</a>.</p>
+</li>
+<li>
+<p>Naszym celem jest więc zaimplementowanie nowego endpointa, który na podstawie przesłanych danych wygeneruje nam odpowiedni token.</p>
+</li>
+<li>
+<p>W tym celu dodaj do projektu bibliotekę dodającą wsparcie dla JWT: <code>java-jwt</code>.</p>
+</li>
+<li>
+<p>Dodaj klasę do pakietu <code>security</code> pozwalającą na ładowanie użytkowników przez system autentykacji Springa:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">package</span> com.company.enroller.security;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> com.company.enroller.model.Participant;
@@ -100,34 +110,34 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>@Service
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> ParticipantProvider <span style="color:#fff;font-weight:bold">implements</span> UserDetailsService {
-</span></span><span style="display:flex;"><span>   @Autowired
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">private</span> ParticipantService participantService;
+</span></span><span style="display:flex;"><span>@Autowired
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">private</span> ParticipantService participantService;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   @Override
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">public</span> UserDetails loadUserByUsername(String username) <span style="color:#fff;font-weight:bold">throws</span> UsernameNotFoundException {
-</span></span><span style="display:flex;"><span>       Participant participant = participantService.<span style="color:#007f7f">findByLogin</span>(username);
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">if</span> (participant == <span style="color:#fff;font-weight:bold">null</span>) {
-</span></span><span style="display:flex;"><span>           <span style="color:#fff;font-weight:bold">throw</span> <span style="color:#fff;font-weight:bold">new</span> UsernameNotFoundException(username);
-</span></span><span style="display:flex;"><span>       }
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> User(participant.<span style="color:#007f7f">getLogin</span>(), participant.<span style="color:#007f7f">getPassword</span>(), Collections.<span style="color:#007f7f">emptyList</span>());
-</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>@Override
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> UserDetails loadUserByUsername(String username) <span style="color:#fff;font-weight:bold">throws</span> UsernameNotFoundException {
+</span></span><span style="display:flex;"><span>    Participant participant = participantService.<span style="color:#007f7f">findByLogin</span>(username);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (participant == <span style="color:#fff;font-weight:bold">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">throw</span> <span style="color:#fff;font-weight:bold">new</span> UsernameNotFoundException(username);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> User(participant.<span style="color:#007f7f">getLogin</span>(), participant.<span style="color:#007f7f">getPassword</span>(), Collections.<span style="color:#007f7f">emptyList</span>());
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol>
-<li>W klasie WebSecurity wstrzyknij wymagane zależności i skonfiguruj system autentykacji nadpisując odpowiednią metodę:</li>
-</ol>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>W klasie WebSecurity wstrzyknij wymagane zależności i skonfiguruj system autentykacji nadpisując odpowiednią metodę:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Override
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">void</span> configure(AuthenticationManagerBuilder auth) <span style="color:#fff;font-weight:bold">throws</span> Exception {
-</span></span><span style="display:flex;"><span>   auth.<span style="color:#007f7f">userDetailsService</span>(participantProvider).<span style="color:#007f7f">passwordEncoder</span>(passwordEncoder);
+</span></span><span style="display:flex;"><span>auth.<span style="color:#007f7f">userDetailsService</span>(participantProvider).<span style="color:#007f7f">passwordEncoder</span>(passwordEncoder);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol>
-<li>W katalogu <code>src/main/resources</code> utwórz plik <code>application.properties</code> z konfiguracją aplikacji:</li>
-</ol>
+</span></span></code></pre></div></li>
+<li>
+<p>W katalogu <code>src/main/resources</code> utwórz plik <code>application.properties</code> z konfiguracją aplikacji:</p>
 <pre tabindex="0"><code>security.secret = ThisIsNotSoSecretSoChangeIt
-security.issuer = https://myenrollerdemo-twoj_login.b4a.run
+security.issuer = https://myenrollerdemo
 security.token_expiration_in_seconds = 3600
-</code></pre><ol>
-<li>Do pakietu <code>security</code> dodaj nową klasę. Będzie to filtr requestów, który wystawi token JWT gdy klient prześle poprawne dane logowania:</li>
-</ol>
+</code></pre></li>
+<li>
+<p>Do pakietu <code>security</code> dodaj nową klasę. Będzie to filtr requestów, który wystawi token JWT gdy klient prześle poprawne dane logowania:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">package</span> com.company.enroller.security;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> com.auth0.jwt.JWT;
@@ -154,57 +164,72 @@ security.token_expiration_in_seconds = 3600
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">import</span> java.util.Date;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">class</span> JWTAuthenticationFilter <span style="color:#fff;font-weight:bold">extends</span> AbstractAuthenticationProcessingFilter {
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">private</span> AuthenticationManager authenticationManager;
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> String secret;
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> String issuer;
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> <span style="color:#fff;font-weight:bold">int</span> tokenExpiration;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">private</span> AuthenticationManager authenticationManager;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> String secret;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> String issuer;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">private</span> <span style="color:#fff;font-weight:bold">final</span> <span style="color:#fff;font-weight:bold">int</span> tokenExpiration;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">public</span> JWTAuthenticationFilter(AuthenticationManager authenticationManager, String secret, String issuer, <span style="color:#fff;font-weight:bold">int</span> tokenExpiration) {
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">super</span>(<span style="color:#fff;font-weight:bold">new</span> AntPathRequestMatcher(<span style="color:#0ff;font-weight:bold">&#34;/tokens&#34;</span>, HttpMethod.<span style="color:#007f7f">POST</span>.<span style="color:#007f7f">name</span>()));
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">authenticationManager</span> = authenticationManager;
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">secret</span> = secret;
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">issuer</span> = issuer;
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">tokenExpiration</span> = tokenExpiration;
-</span></span><span style="display:flex;"><span>   }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   @Override
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">public</span> Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) <span style="color:#fff;font-weight:bold">throws</span> AuthenticationException {
-</span></span><span style="display:flex;"><span>       <span style="color:#fff;font-weight:bold">try</span> {
-</span></span><span style="display:flex;"><span>           Participant participant = <span style="color:#fff;font-weight:bold">new</span> ObjectMapper().<span style="color:#007f7f">readValue</span>(req.<span style="color:#007f7f">getInputStream</span>(), Participant.<span style="color:#007f7f">class</span>);
-</span></span><span style="display:flex;"><span>           Authentication authentication = <span style="color:#fff;font-weight:bold">new</span> UsernamePasswordAuthenticationToken(participant.<span style="color:#007f7f">getLogin</span>(), participant.<span style="color:#007f7f">getPassword</span>(), <span style="color:#fff;font-weight:bold">new</span> ArrayList&lt;&gt;());
-</span></span><span style="display:flex;"><span>           <span style="color:#fff;font-weight:bold">return</span> authenticationManager.<span style="color:#007f7f">authenticate</span>(authentication);
-</span></span><span style="display:flex;"><span>       } <span style="color:#fff;font-weight:bold">catch</span> (IOException e) {
-</span></span><span style="display:flex;"><span>           <span style="color:#fff;font-weight:bold">throw</span> <span style="color:#fff;font-weight:bold">new</span> BadCredentialsException(<span style="color:#0ff;font-weight:bold">&#34;Invalid login request.&#34;</span>, e);
-</span></span><span style="display:flex;"><span>       }
-</span></span><span style="display:flex;"><span>   }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>   @Override
-</span></span><span style="display:flex;"><span>   <span style="color:#fff;font-weight:bold">protected</span> <span style="color:#fff;font-weight:bold">void</span> successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) <span style="color:#fff;font-weight:bold">throws</span> IOException {
-</span></span><span style="display:flex;"><span>       String login = ((UserDetails) auth.<span style="color:#007f7f">getPrincipal</span>()).<span style="color:#007f7f">getUsername</span>();
-</span></span><span style="display:flex;"><span>       LocalDateTime now = LocalDateTime.<span style="color:#007f7f">now</span>();
-</span></span><span style="display:flex;"><span>       String token = JWT.<span style="color:#007f7f">create</span>()
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">withIssuer</span>(issuer)
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">withSubject</span>(login)
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">withIssuedAt</span>(Date.<span style="color:#007f7f">from</span>(now.<span style="color:#007f7f">atZone</span>(ZoneId.<span style="color:#007f7f">systemDefault</span>()).<span style="color:#007f7f">toInstant</span>()))
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">withExpiresAt</span>(Date.<span style="color:#007f7f">from</span>(now.<span style="color:#007f7f">plusSeconds</span>(tokenExpiration).<span style="color:#007f7f">atZone</span>(ZoneId.<span style="color:#007f7f">systemDefault</span>()).<span style="color:#007f7f">toInstant</span>()))
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">withClaim</span>(<span style="color:#0ff;font-weight:bold">&#34;role&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;participant&#34;</span>)
-</span></span><span style="display:flex;"><span>               .<span style="color:#007f7f">sign</span>(Algorithm.<span style="color:#007f7f">HMAC256</span>(secret));
-</span></span><span style="display:flex;"><span>       res.<span style="color:#007f7f">getWriter</span>().<span style="color:#007f7f">write</span>(String.<span style="color:#007f7f">format</span>(<span style="color:#0ff;font-weight:bold">&#34;{\&#34;token\&#34;: \&#34;%s\&#34;}&#34;</span>, token));
-</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> JWTAuthenticationFilter(AuthenticationManager authenticationManager, String secret, String issuer, <span style="color:#fff;font-weight:bold">int</span> tokenExpiration) {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">super</span>(<span style="color:#fff;font-weight:bold">new</span> AntPathRequestMatcher(<span style="color:#0ff;font-weight:bold">&#34;/tokens&#34;</span>, HttpMethod.<span style="color:#007f7f">POST</span>.<span style="color:#007f7f">name</span>()));
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">authenticationManager</span> = authenticationManager;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">secret</span> = secret;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">issuer</span> = issuer;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.<span style="color:#007f7f">tokenExpiration</span> = tokenExpiration;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol>
-<li>W klasie WebSecurity w metodzie configure zarejestruj stworzony filtr:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Override
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span> Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) <span style="color:#fff;font-weight:bold">throws</span> AuthenticationException {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">try</span> {
+</span></span><span style="display:flex;"><span>        Participant participant = <span style="color:#fff;font-weight:bold">new</span> ObjectMapper().<span style="color:#007f7f">readValue</span>(req.<span style="color:#007f7f">getInputStream</span>(), Participant.<span style="color:#007f7f">class</span>);
+</span></span><span style="display:flex;"><span>        Authentication authentication = <span style="color:#fff;font-weight:bold">new</span> UsernamePasswordAuthenticationToken(participant.<span style="color:#007f7f">getLogin</span>(), participant.<span style="color:#007f7f">getPassword</span>(), <span style="color:#fff;font-weight:bold">new</span> ArrayList&lt;&gt;());
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> authenticationManager.<span style="color:#007f7f">authenticate</span>(authentication);
+</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">throw</span> <span style="color:#fff;font-weight:bold">new</span> BadCredentialsException(<span style="color:#0ff;font-weight:bold">&#34;Invalid login request.&#34;</span>, e);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Override
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">protected</span> <span style="color:#fff;font-weight:bold">void</span> successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) <span style="color:#fff;font-weight:bold">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    String login = ((UserDetails) auth.<span style="color:#007f7f">getPrincipal</span>()).<span style="color:#007f7f">getUsername</span>();
+</span></span><span style="display:flex;"><span>    LocalDateTime now = LocalDateTime.<span style="color:#007f7f">now</span>();
+</span></span><span style="display:flex;"><span>    String token = JWT.<span style="color:#007f7f">create</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">withIssuer</span>(issuer)
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">withSubject</span>(login)
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">withIssuedAt</span>(Date.<span style="color:#007f7f">from</span>(now.<span style="color:#007f7f">atZone</span>(ZoneId.<span style="color:#007f7f">systemDefault</span>()).<span style="color:#007f7f">toInstant</span>()))
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">withExpiresAt</span>(Date.<span style="color:#007f7f">from</span>(now.<span style="color:#007f7f">plusSeconds</span>(tokenExpiration).<span style="color:#007f7f">atZone</span>(ZoneId.<span style="color:#007f7f">systemDefault</span>()).<span style="color:#007f7f">toInstant</span>()))
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">withClaim</span>(<span style="color:#0ff;font-weight:bold">&#34;role&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;participant&#34;</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#007f7f">sign</span>(Algorithm.<span style="color:#007f7f">HMAC256</span>(secret));
+</span></span><span style="display:flex;"><span>    res.<span style="color:#007f7f">getWriter</span>().<span style="color:#007f7f">write</span>(String.<span style="color:#007f7f">format</span>(<span style="color:#0ff;font-weight:bold">&#34;{\&#34;token\&#34;: \&#34;%s\&#34;}&#34;</span>, token));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>W klasie WebSecurity w metodzie <code>configure</code> zarejestruj stworzony filtr:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#007f7f">addFilterBefore</span>(<span style="color:#fff;font-weight:bold">new</span> JWTAuthenticationFilter(authenticationManager(), secret, issuer, tokenExpiration), UsernamePasswordAuthenticationFilter.<span style="color:#007f7f">class</span>)
 </span></span></code></pre></div></li>
-<li>Potrzebne wartości wstrzyknij z konfiguracji aplikacji za pomocą adnotacji @Value, na zasadzie:
+<li>
+<p>Potrzebne wartości wstrzyknij z konfiguracji aplikacji za pomocą adnotacji @Value, na zasadzie:</p>
 <div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Value(<span style="color:#0ff;font-weight:bold">&#34;${security.secret}&#34;</span>)
 </span></span><span style="display:flex;"><span>String secret;
 </span></span></code></pre></div></li>
-<li>Przetestuj wystawianie tokena za pomocą Postmana. W tym przypomij sobie z poprzedniego kroku dane nowego użytkownika. Następnie wywołaj żądanie utworzenia nowego tokenu podając dane wstawionego użytkownika:
+<li>
+<p>Przetestuj wystawianie tokena za pomocą Postmana. W tym przypomij sobie z poprzedniego kroku dane nowego użytkownika. Następnie wywołaj żądanie utworzenia nowego tokenu podając dane wstawionego użytkownika:</p>
 <pre tabindex="0"><code>curl -s -d &#39;{&#34;login&#34;:&#34;janek&#34;, &#34;password&#34;:&#34;tajemne&#34;}&#39; -H &#34;Content-Type: application/json&#34; -X POST http://localhost:8080/api/tokens
-</code></pre><img src="https://jdajda.github.io/mwo/web2-lab2/fetching-token-1.png" alt="Token 1"></li>
+</code></pre><p>W IntelliJ to będzie wyglądało następująco:</p>
+<pre tabindex="0"><code>###
+POST http://localhost:8080/tokens
+Content-Type: application/json
+
+{
+&#34;login&#34;: &#34;janek&#34;,
+&#34;password&#34;: &#34;tajemne&#34;
+}
+</code></pre></li>
+</ol>
+<!-- raw HTML omitted -->
+<ol>
 <li>Efektem powinien być otrzymany na wyjściu token.
-<img src="https://jdajda.github.io/mwo/web2-lab2/fetching-token-2.png" alt="Token 2"></li>
+<img src="https://jdajda.github.io/mwo/web2-lab2/fetching-token-2a.png" alt="Token 2"></li>
 <li>Możesz go zdekodować na znanej już stronie <a href="https://jwt.io">https://jwt.io</a>
 <img src="https://jdajda.github.io/mwo/web2-lab2/fetching-token-3.png" alt="Token 3"></li>
 <li>Sprawdź kiedy token wygaśnie - zdekoduj datę wygaśnięcia np. przy pomocy strony: <a href="https://www.epochconverter.com">https://www.epochconverter.com</a>
@@ -228,9 +253,9 @@ security.token_expiration_in_seconds = 3600
           <input data-search-input id="search-by" type="search" placeholder="Szukaj...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/lunr.min.js?1745706237"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/auto-complete.js?1745706237"></script>
-        <script src="https://jdajda.github.io/mwo/web2-lab2/js/search.js?1745706237"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/lunr.min.js?1745714372"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/auto-complete.js?1745714372"></script>
+        <script src="https://jdajda.github.io/mwo/web2-lab2/js/search.js?1745714372"></script>
       </div>
       <div id="homelinks" class="default-animation">
         <ul>
@@ -285,9 +310,9 @@ security.token_expiration_in_seconds = 3600
         </div>
       </div>
     </aside>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/clipboard.min.js?1745706237"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/perfect-scrollbar.min.js?1745706237"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/featherlight.min.js?1745706237"></script>
-    <script src="https://jdajda.github.io/mwo/web2-lab2/js/theme.js?1745706237"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/clipboard.min.js?1745714372"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/perfect-scrollbar.min.js?1745714372"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/featherlight.min.js?1745714372"></script>
+    <script src="https://jdajda.github.io/mwo/web2-lab2/js/theme.js?1745714372"></script>
   </body>
 </html>
