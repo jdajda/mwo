@@ -5,12 +5,12 @@ weight = 35
 +++
 
 1. Czas na dalszy rozwój aplikacji! Dodaj dodatkowe endpointy umożliwiające:
-    - dodawanie uczestników do spotkania
-    - usuwanie uczestników ze spotkania
-    - pobieranie uczestników w ramach spotkania. Uczestnicy muszą być wcześniej zarejestrowani w systemie
+    - dodawanie uczestnika do spotkania (uczestnik musi być wcześniej zarejestrowany w systemie)
+    - usuwanie uczestnika ze spotkania
+    - pobieranie uczestników zarejestrowanych w spotkaniu 
 1. Wszystkie niezbędne serwisy powinny być już dostępne
 1. Przykłady użycia endpointów:
     - ```GET meetings/{id}/participants``` - pobiera zarejestrowanych uczestników spotkania
-    - ```POST meetings/{id}/participants``` - dodaje uczestnika/uczestników spotkania
+    - ```POST meetings/{id}/participants``` - dodaje uczestnika do spotkania
     - ```DELETE meetings/{id}/participants/{login}``` - usuwa uczestnika ze spotkania
 

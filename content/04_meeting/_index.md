@@ -5,9 +5,11 @@ weight = 20
 +++
 
 Analogicznie do endpoint'ów dla uczestników zaimplementuj poniższe endpointy dla spotkań:
-1. Pobieranie listy wszystkich spotkań
-1. Pobieranie listy pojedyncznego spotkania
-1. **Commit & Push** !
+1. Pobieranie listy wszystkich spotkań => *Commit & Push* !
+1. Pobieranie listy pojedyncznego spotkania => *Commit & Push* !
+1. Dodawanie spotkań => *Commit & Push* !
+1. Usuwanie spotkań => *Commit & Push* !
+1. Edycję spotkań => *Commit & Push* !
 
 {{% notice tip %}}
 1. Pamiętaj, że w tym celu musisz dodać nowy kontroller:

@@ -12,7 +12,7 @@ weight = 40
 1. Sprawdź efekt działania. Jak?
 1. Dodajmy bibliotekę odpowiedzialną za bezpieczeństwo dla frameworka Spring: ```spring-boot-starter-security```. Jak to zrobić? Powinieneś to już wiedzieć ;-)
 1. Następnie sprawdź efekt działania. Co zauważyłeś? Czy aplikacja działa? 
-1. Czas rozbudować ochronę i zacząć szyfrować hasła. Wcześniej jednak musimy być w stanie cokolwiek w aplikacji zrobić, bo obecnie niewiele możemy. W tym celu pakiet ```Security``` a w nim klasę ```WebSecurity``` odpowiedzialną za kontrolę bezpieczeństwa:
+1. Czas rozbudować ochronę i zacząć szyfrować hasła. Wcześniej jednak musimy być w stanie cokolwiek w aplikacji zrobić, bo obecnie niewiele możemy. W tym celu pakiet ```security``` a w nim klasę ```WebSecurity``` odpowiedzialną za kontrolę bezpieczeństwa:
     ```java
     package com.company.enroller.security;
 
@@ -41,10 +41,16 @@ weight = 40
         return new BCryptPasswordEncoder();
     }
     ```
+
 1. A następnie ją wykorzystaj tam gdzie dodajesz nowego użytkownika:
     ```java
     String hashedPassword = passwordEncoder.encode(participant.getPassword());
 	participant.setPassword(hashedPassword);
+    ```
+    Oczywiście żeby powyższy kod zadziałał potrzebujesz zainicjalizować zmienną passwordEncoder. Wykorzystaj do tego mechanizm samego Springa, który znajdzie po nazwie typu odpowiedniego ```Beana``` i sam go zainicjalizuje a więc:
+    ```java
+    @Autowired
+	PasswordEncoder passwordEncoder;
     ```
 1. Sprawdź efekt działania. Dodaj nowego użytkowika i zobacz czy jego hasło będzie zaszyfrowane w bazie danych. **Zapamiętaj lub zapisz podane hasło!**
 1. Na koniec: **Commit, push, deploy!**

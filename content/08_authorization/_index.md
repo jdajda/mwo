@@ -56,7 +56,7 @@ weight = 60
         }
     }
     ```
-1. Zarejestruj ten filtr w konfiguracji zabezpieczeń:
+1. Zarejestruj ten filtr w konfiguracji zabezpieczeń w klasie ```WebSecurity```:
     ```java
     .addFilter(new JWTAuthorizationFilter(authenticationManager(), secret))
     ```
@@ -67,6 +67,10 @@ weight = 60
     .antMatchers("/tokens").permitAll()
     .antMatchers("/**").authenticated()
     ```
-1. Sprawdź, czy nadal możesz założyć konto i czy dostęp do ```/meetings``` rzeczywiście został zablokowany, jeśli użytkownik nie jest zalogowany. Zalogowanie to pozyskanie tokena, a następnie jego użycie w każdym zapytaniu do endpointa. W tym celu musisz go przesłać w nagłówku zapytania. Możesz to zrobić w Postmanie tak jak na załączonym obrazku:
-    ![Authorization](/authorization.png)
+1. Sprawdź, czy nadal możesz założyć konto i czy dostęp do ```/meetings``` rzeczywiście został zablokowany, jeśli użytkownik nie jest zalogowany. Zalogowanie to pozyskanie tokena, a następnie jego użycie w każdym zapytaniu do endpointa. W tym celu musisz go przesłać w nagłówku zapytania. Możesz to zrobić tak jak poniżej w IntelliJ:
+    ```java
+    ### Authorization by token
+    GET http://localhost:8080/meetings
+    Authorization: Bearer {{auth_token}}
+    ```
 1. Gotowe! **Commit, push, deploy!**
